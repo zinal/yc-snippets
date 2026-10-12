@@ -1,0 +1,5443 @@
+{
+  "source": {
+    "interface": "yc",
+    "version": "Yandex Cloud CLI 1.41.0 linux/amd64",
+    "generated_at": "2026-10-12T19:48:37+00:00",
+    "docs": "https://yandex.cloud/ru/docs/cli/cli-ref/",
+    "api": "https://github.com/yandex-cloud/cloudapi",
+    "notes": "Команды собраны из локальной справки yc, без обращений к API. default=true только у метаданных созданных ресурсов. Вложенные команды (scope=parent) описаны, но раннер их не выполняет: для них нужен идентификатор родителя."
+  },
+  "commands": [
+    {
+      "id": "adviser.issue",
+      "description": "List issues detected on the resources of the specified cloud, folder or resource.",
+      "argv": [
+        "adviser",
+        "issue",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "advisory",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cloud-id",
+        "--folder-id",
+        "--resource-id",
+        "--state",
+        "--severity",
+        "--category",
+        "--visibility",
+        "--lang",
+        "--limit",
+        "--page-token"
+      ]
+    },
+    {
+      "id": "adviser.v1.issue",
+      "description": "List issues detected on the resources of the specified cloud, folder or resource.",
+      "argv": [
+        "adviser",
+        "v1",
+        "issue",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "advisory",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cloud-id",
+        "--folder-id",
+        "--resource-id",
+        "--state",
+        "--severity",
+        "--category",
+        "--visibility",
+        "--lang",
+        "--limit",
+        "--page-token"
+      ],
+      "alias_of": "adviser.issue"
+    },
+    {
+      "id": "application-load-balancer.backend-group",
+      "description": "List backend groups",
+      "argv": [
+        "application-load-balancer",
+        "backend-group",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "application-load-balancer.http-router",
+      "description": "List http routers",
+      "argv": [
+        "application-load-balancer",
+        "http-router",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "application-load-balancer.load-balancer",
+      "description": "List application load balancers",
+      "argv": [
+        "application-load-balancer",
+        "load-balancer",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "application-load-balancer.target-group",
+      "description": "List target groups",
+      "argv": [
+        "application-load-balancer",
+        "target-group",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "application-load-balancer.virtual-host",
+      "description": "List http router virtual hosts",
+      "argv": [
+        "application-load-balancer",
+        "virtual-host",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit",
+        "--http-router-id",
+        "--http-router-name"
+      ],
+      "parent_flag": "--http-router-id",
+      "parent_command": "application-load-balancer.http-router"
+    },
+    {
+      "id": "audit-trails.trail",
+      "description": "List trails",
+      "argv": [
+        "audit-trails",
+        "trail",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "backup.backup",
+      "description": "Lists available backups",
+      "argv": [
+        "backup",
+        "backup",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit",
+        "--instance-id",
+        "--archive-id",
+        "--type"
+      ]
+    },
+    {
+      "id": "backup.policy",
+      "description": "Lists available policies",
+      "argv": [
+        "backup",
+        "policy",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit",
+        "--instance-id"
+      ]
+    },
+    {
+      "id": "backup.vm",
+      "description": "Lists available resources",
+      "argv": [
+        "backup",
+        "vm",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit",
+        "--type"
+      ]
+    },
+    {
+      "id": "baremetal.boot-image",
+      "description": "Retrieves the list of BootImage resources in the specified folder.",
+      "argv": [
+        "baremetal",
+        "boot-image",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--folder-id",
+        "--page-size",
+        "--page-token",
+        "--order-by",
+        "--filter"
+      ]
+    },
+    {
+      "id": "baremetal.configuration",
+      "description": "Retrieves the list of Configuration resources.",
+      "argv": [
+        "baremetal",
+        "configuration",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "reference",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--page-size",
+        "--page-token",
+        "--order-by",
+        "--filter",
+        "--folder-id"
+      ]
+    },
+    {
+      "id": "baremetal.hardware-pool",
+      "description": "Retrieves the list of HardwarePool resources.",
+      "argv": [
+        "baremetal",
+        "hardware-pool",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "reference",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--page-size",
+        "--page-token"
+      ]
+    },
+    {
+      "id": "baremetal.private-cloud-connection",
+      "description": "Retrieves the list of Private cloud connection resources in the specified folder.",
+      "argv": [
+        "baremetal",
+        "private-cloud-connection",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--folder-id",
+        "--page-size",
+        "--page-token",
+        "--order-by",
+        "--filter"
+      ]
+    },
+    {
+      "id": "baremetal.private-subnet",
+      "description": "Retrieves the list of PrivateSubnet resources in the specified folder.",
+      "argv": [
+        "baremetal",
+        "private-subnet",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--folder-id",
+        "--page-size",
+        "--page-token",
+        "--order-by",
+        "--filter"
+      ]
+    },
+    {
+      "id": "baremetal.public-prefix-pool",
+      "description": "Lists public prefix pools in the specified folder.",
+      "argv": [
+        "baremetal",
+        "public-prefix-pool",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--folder-id",
+        "--page-size",
+        "--page-token",
+        "--order-by",
+        "--filter"
+      ]
+    },
+    {
+      "id": "baremetal.public-subnet",
+      "description": "Retrieves the list of PublicSubnet resources in the specified folder.",
+      "argv": [
+        "baremetal",
+        "public-subnet",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--folder-id",
+        "--page-size",
+        "--page-token",
+        "--order-by",
+        "--filter"
+      ]
+    },
+    {
+      "id": "baremetal.rental-period",
+      "description": "Retrieves the list of RentalPeriod resources.",
+      "argv": [
+        "baremetal",
+        "rental-period",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--configuration-id",
+        "--page-size",
+        "--page-token"
+      ],
+      "parent_flag": "--configuration-id",
+      "parent_command": "baremetal.configuration"
+    },
+    {
+      "id": "baremetal.server",
+      "description": "Retrieves the list of Server resources in the specified folder.",
+      "argv": [
+        "baremetal",
+        "server",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--folder-id",
+        "--page-size",
+        "--page-token",
+        "--order-by",
+        "--filter"
+      ]
+    },
+    {
+      "id": "baremetal.standard-image",
+      "description": "Retrieves the list of Image resources in the specified folder. Pass the \"baremetal-standard-images\" folder to get general images.",
+      "argv": [
+        "baremetal",
+        "standard-image",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "reference",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--page-size",
+        "--page-token",
+        "--order-by",
+        "--filter",
+        "--folder-id"
+      ]
+    },
+    {
+      "id": "baremetal.v1alpha.boot-image",
+      "description": "Retrieves the list of BootImage resources in the specified folder.",
+      "argv": [
+        "baremetal",
+        "v1alpha",
+        "boot-image",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--folder-id",
+        "--page-size",
+        "--page-token",
+        "--order-by",
+        "--filter"
+      ],
+      "alias_of": "baremetal.boot-image"
+    },
+    {
+      "id": "baremetal.v1alpha.configuration",
+      "description": "Retrieves the list of Configuration resources.",
+      "argv": [
+        "baremetal",
+        "v1alpha",
+        "configuration",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "reference",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--page-size",
+        "--page-token",
+        "--order-by",
+        "--filter",
+        "--folder-id"
+      ],
+      "alias_of": "baremetal.configuration"
+    },
+    {
+      "id": "baremetal.v1alpha.hardware-pool",
+      "description": "Retrieves the list of HardwarePool resources.",
+      "argv": [
+        "baremetal",
+        "v1alpha",
+        "hardware-pool",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "reference",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--page-size",
+        "--page-token"
+      ],
+      "alias_of": "baremetal.hardware-pool"
+    },
+    {
+      "id": "baremetal.v1alpha.private-cloud-connection",
+      "description": "Retrieves the list of Private cloud connection resources in the specified folder.",
+      "argv": [
+        "baremetal",
+        "v1alpha",
+        "private-cloud-connection",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--folder-id",
+        "--page-size",
+        "--page-token",
+        "--order-by",
+        "--filter"
+      ],
+      "alias_of": "baremetal.private-cloud-connection"
+    },
+    {
+      "id": "baremetal.v1alpha.private-subnet",
+      "description": "Retrieves the list of PrivateSubnet resources in the specified folder.",
+      "argv": [
+        "baremetal",
+        "v1alpha",
+        "private-subnet",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--folder-id",
+        "--page-size",
+        "--page-token",
+        "--order-by",
+        "--filter"
+      ],
+      "alias_of": "baremetal.private-subnet"
+    },
+    {
+      "id": "baremetal.v1alpha.public-prefix-pool",
+      "description": "Lists public prefix pools in the specified folder.",
+      "argv": [
+        "baremetal",
+        "v1alpha",
+        "public-prefix-pool",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--folder-id",
+        "--page-size",
+        "--page-token",
+        "--order-by",
+        "--filter"
+      ],
+      "alias_of": "baremetal.public-prefix-pool"
+    },
+    {
+      "id": "baremetal.v1alpha.public-subnet",
+      "description": "Retrieves the list of PublicSubnet resources in the specified folder.",
+      "argv": [
+        "baremetal",
+        "v1alpha",
+        "public-subnet",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--folder-id",
+        "--page-size",
+        "--page-token",
+        "--order-by",
+        "--filter"
+      ],
+      "alias_of": "baremetal.public-subnet"
+    },
+    {
+      "id": "baremetal.v1alpha.rental-period",
+      "description": "Retrieves the list of RentalPeriod resources.",
+      "argv": [
+        "baremetal",
+        "v1alpha",
+        "rental-period",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--configuration-id",
+        "--page-size",
+        "--page-token"
+      ],
+      "parent_flag": "--configuration-id",
+      "parent_command": "baremetal.v1alpha.configuration",
+      "alias_of": "baremetal.rental-period"
+    },
+    {
+      "id": "baremetal.v1alpha.server",
+      "description": "Retrieves the list of Server resources in the specified folder.",
+      "argv": [
+        "baremetal",
+        "v1alpha",
+        "server",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--folder-id",
+        "--page-size",
+        "--page-token",
+        "--order-by",
+        "--filter"
+      ],
+      "alias_of": "baremetal.server"
+    },
+    {
+      "id": "baremetal.v1alpha.standard-image",
+      "description": "Retrieves the list of Image resources in the specified folder. Pass the \"baremetal-standard-images\" folder to get general images.",
+      "argv": [
+        "baremetal",
+        "v1alpha",
+        "standard-image",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "reference",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--page-size",
+        "--page-token",
+        "--order-by",
+        "--filter",
+        "--folder-id"
+      ],
+      "alias_of": "baremetal.standard-image"
+    },
+    {
+      "id": "baremetal.v1alpha.vrf",
+      "description": "Retrieves the list of VRF resources in the specified folder.",
+      "argv": [
+        "baremetal",
+        "v1alpha",
+        "vrf",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--folder-id",
+        "--page-size",
+        "--page-token",
+        "--order-by",
+        "--filter"
+      ],
+      "alias_of": "baremetal.vrf"
+    },
+    {
+      "id": "baremetal.v1alpha.zone",
+      "description": "Retrieves the list of Zone resources.",
+      "argv": [
+        "baremetal",
+        "v1alpha",
+        "zone",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "reference",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--page-size",
+        "--page-token"
+      ],
+      "alias_of": "baremetal.zone"
+    },
+    {
+      "id": "baremetal.v2.boot-image",
+      "description": "Retrieves the list of BootImage resources in the specified folder.",
+      "argv": [
+        "baremetal",
+        "v2",
+        "boot-image",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cloud-id",
+        "--folder-id",
+        "--page-size",
+        "--page-token",
+        "--order-by",
+        "--filter"
+      ],
+      "alias_of": "baremetal.boot-image"
+    },
+    {
+      "id": "baremetal.v2.extend.stackland-cluster",
+      "description": "List Stackland clusters in the specified folder.",
+      "argv": [
+        "baremetal",
+        "v2",
+        "extend",
+        "stackland-cluster",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--cloud-id",
+        "--folder-id",
+        "--page-size",
+        "--page-token",
+        "--order-by",
+        "--filter"
+      ]
+    },
+    {
+      "id": "baremetal.v2.hardware-pool",
+      "description": "Retrieves the list of HardwarePool resources.",
+      "argv": [
+        "baremetal",
+        "v2",
+        "hardware-pool",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--zone-id",
+        "--page-size",
+        "--page-token"
+      ],
+      "parent_flag": "--zone-id",
+      "parent_command": "baremetal.v2.zone",
+      "alias_of": "baremetal.hardware-pool"
+    },
+    {
+      "id": "baremetal.v2.image",
+      "description": "Retrieves the list of Image resources.",
+      "argv": [
+        "baremetal",
+        "v2",
+        "image",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--folder-id",
+        "--page-size",
+        "--page-token",
+        "--order-by",
+        "--filter"
+      ]
+    },
+    {
+      "id": "baremetal.v2.private-cloud-connection",
+      "description": "Retrieves the list of Private cloud connection resources in the specified folder.",
+      "argv": [
+        "baremetal",
+        "v2",
+        "private-cloud-connection",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cloud-id",
+        "--folder-id",
+        "--page-size",
+        "--page-token",
+        "--order-by",
+        "--filter"
+      ],
+      "alias_of": "baremetal.private-cloud-connection"
+    },
+    {
+      "id": "baremetal.v2.private-subnet",
+      "description": "Retrieves the list of PrivateSubnet resources in the specified folder.",
+      "argv": [
+        "baremetal",
+        "v2",
+        "private-subnet",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cloud-id",
+        "--folder-id",
+        "--page-size",
+        "--page-token",
+        "--order-by",
+        "--filter"
+      ],
+      "alias_of": "baremetal.private-subnet"
+    },
+    {
+      "id": "baremetal.v2.public-prefix-pool",
+      "description": "Lists public prefix pools in the specified folder.",
+      "argv": [
+        "baremetal",
+        "v2",
+        "public-prefix-pool",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cloud-id",
+        "--folder-id",
+        "--page-size",
+        "--page-token",
+        "--order-by",
+        "--filter"
+      ],
+      "alias_of": "baremetal.public-prefix-pool"
+    },
+    {
+      "id": "baremetal.v2.public-subnet",
+      "description": "Retrieves the list of PublicSubnet resources in the specified folder.",
+      "argv": [
+        "baremetal",
+        "v2",
+        "public-subnet",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cloud-id",
+        "--folder-id",
+        "--page-size",
+        "--page-token",
+        "--order-by",
+        "--filter"
+      ],
+      "alias_of": "baremetal.public-subnet"
+    },
+    {
+      "id": "baremetal.v2.rental-period",
+      "description": "Retrieves the list of RentalPeriod resources.",
+      "argv": [
+        "baremetal",
+        "v2",
+        "rental-period",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "reference",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--page-size",
+        "--page-token"
+      ],
+      "alias_of": "baremetal.rental-period"
+    },
+    {
+      "id": "baremetal.v2.server",
+      "description": "Retrieves the list of Server resources in the specified folder.",
+      "argv": [
+        "baremetal",
+        "v2",
+        "server",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cloud-id",
+        "--folder-id",
+        "--page-size",
+        "--page-token",
+        "--order-by",
+        "--filter"
+      ],
+      "alias_of": "baremetal.server"
+    },
+    {
+      "id": "baremetal.v2.vrf",
+      "description": "Retrieves the list of VRF resources in the specified folder.",
+      "argv": [
+        "baremetal",
+        "v2",
+        "vrf",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cloud-id",
+        "--folder-id",
+        "--page-size",
+        "--page-token",
+        "--order-by",
+        "--filter"
+      ],
+      "alias_of": "baremetal.vrf"
+    },
+    {
+      "id": "baremetal.v2.zone",
+      "description": "Retrieves the list of Zone resources.",
+      "argv": [
+        "baremetal",
+        "v2",
+        "zone",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "reference",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--page-size",
+        "--page-token"
+      ],
+      "alias_of": "baremetal.zone"
+    },
+    {
+      "id": "baremetal.vrf",
+      "description": "Retrieves the list of VRF resources in the specified folder.",
+      "argv": [
+        "baremetal",
+        "vrf",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--folder-id",
+        "--page-size",
+        "--page-token",
+        "--order-by",
+        "--filter"
+      ]
+    },
+    {
+      "id": "baremetal.zone",
+      "description": "Retrieves the list of Zone resources.",
+      "argv": [
+        "baremetal",
+        "zone",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "reference",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--page-size",
+        "--page-token"
+      ]
+    },
+    {
+      "id": "cdn.origin",
+      "description": "List origins in the specified origin group",
+      "argv": [
+        "cdn",
+        "origin",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--id",
+        "--limit"
+      ],
+      "parent_flag": "--id"
+    },
+    {
+      "id": "cdn.origin-group",
+      "description": "List origin groups in the specified folder",
+      "argv": [
+        "cdn",
+        "origin-group",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "cdn.resource",
+      "description": "List resources in the specified folder",
+      "argv": [
+        "cdn",
+        "resource",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit",
+        "--no-options"
+      ]
+    },
+    {
+      "id": "certificate-manager.certificate",
+      "description": "List certificates in the specified folder",
+      "argv": [
+        "certificate-manager",
+        "certificate",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit",
+        "--full"
+      ]
+    },
+    {
+      "id": "cic.partner",
+      "description": "Retrieves the list of Partner resources in the specified folder.",
+      "argv": [
+        "cic",
+        "partner",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "reference",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit",
+        "--page-token",
+        "--filter"
+      ]
+    },
+    {
+      "id": "cic.point-of-presence",
+      "description": "Retrieves the list of PointOfPresence resources in the specified folder.",
+      "argv": [
+        "cic",
+        "point-of-presence",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "reference",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit",
+        "--page-token",
+        "--filter"
+      ]
+    },
+    {
+      "id": "cic.private-connection",
+      "description": "Retrieves the list of PrivateConnection resources in the specified folder.",
+      "argv": [
+        "cic",
+        "private-connection",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--folder-id",
+        "--limit",
+        "--page-token",
+        "--filter"
+      ]
+    },
+    {
+      "id": "cic.public-connection",
+      "description": "Retrieves the list of PublicConnection resources in the specified folder.",
+      "argv": [
+        "cic",
+        "public-connection",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--folder-id",
+        "--limit",
+        "--page-token",
+        "--filter"
+      ]
+    },
+    {
+      "id": "cic.trunk-connection",
+      "description": "Retrieves the list of TrunkConnection resources in the specified folder.",
+      "argv": [
+        "cic",
+        "trunk-connection",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--folder-id",
+        "--limit",
+        "--page-token",
+        "--filter"
+      ]
+    },
+    {
+      "id": "cic.trunk-connection-ticket",
+      "description": "Lists TrunkConnectionTicket resources in the specified folder.",
+      "argv": [
+        "cic",
+        "trunk-connection-ticket",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--folder-id",
+        "--page-size",
+        "--page-token",
+        "--filter"
+      ]
+    },
+    {
+      "id": "cic.v1.partner",
+      "description": "Retrieves the list of Partner resources in the specified folder.",
+      "argv": [
+        "cic",
+        "v1",
+        "partner",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "reference",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit",
+        "--page-token",
+        "--filter"
+      ],
+      "alias_of": "cic.partner"
+    },
+    {
+      "id": "cic.v1.point-of-presence",
+      "description": "Retrieves the list of PointOfPresence resources in the specified folder.",
+      "argv": [
+        "cic",
+        "v1",
+        "point-of-presence",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "reference",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit",
+        "--page-token",
+        "--filter"
+      ],
+      "alias_of": "cic.point-of-presence"
+    },
+    {
+      "id": "cic.v1.private-connection",
+      "description": "Retrieves the list of PrivateConnection resources in the specified folder.",
+      "argv": [
+        "cic",
+        "v1",
+        "private-connection",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--folder-id",
+        "--limit",
+        "--page-token",
+        "--filter"
+      ],
+      "alias_of": "cic.private-connection"
+    },
+    {
+      "id": "cic.v1.public-connection",
+      "description": "Retrieves the list of PublicConnection resources in the specified folder.",
+      "argv": [
+        "cic",
+        "v1",
+        "public-connection",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--folder-id",
+        "--limit",
+        "--page-token",
+        "--filter"
+      ],
+      "alias_of": "cic.public-connection"
+    },
+    {
+      "id": "cic.v1.trunk-connection",
+      "description": "Retrieves the list of TrunkConnection resources in the specified folder.",
+      "argv": [
+        "cic",
+        "v1",
+        "trunk-connection",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--folder-id",
+        "--limit",
+        "--page-token",
+        "--filter"
+      ],
+      "alias_of": "cic.trunk-connection"
+    },
+    {
+      "id": "cic.v1.trunk-connection-ticket",
+      "description": "Lists TrunkConnectionTicket resources in the specified folder.",
+      "argv": [
+        "cic",
+        "v1",
+        "trunk-connection-ticket",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--folder-id",
+        "--page-size",
+        "--page-token",
+        "--filter"
+      ],
+      "alias_of": "cic.trunk-connection-ticket"
+    },
+    {
+      "id": "cloud-registry.artifact",
+      "description": "List artifacts with filtering by kind, registry kind/type, node path",
+      "argv": [
+        "cloud-registry",
+        "artifact",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--registry-id",
+        "--registry-name",
+        "--limit",
+        "--page-token",
+        "--node-path",
+        "--kind",
+        "--registry-kind",
+        "--registry-type",
+        "--example-json"
+      ],
+      "parent_flag": "--registry-id",
+      "parent_command": "cloud-registry.registry"
+    },
+    {
+      "id": "cloud-registry.registry",
+      "description": "Retrieves the list of Registry resources in the specified folder.",
+      "argv": [
+        "cloud-registry",
+        "registry",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--folder-id",
+        "--limit",
+        "--page-token",
+        "--name-filter",
+        "--kind",
+        "--type",
+        "--status"
+      ]
+    },
+    {
+      "id": "cloud-registry.registry.lifecycle-policy",
+      "description": "Retrieves the list of lifecycle policies in the specified registry.",
+      "argv": [
+        "cloud-registry",
+        "registry",
+        "lifecycle-policy",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--registry-id",
+        "--limit",
+        "--page-token"
+      ],
+      "parent_flag": "--registry-id",
+      "parent_command": "cloud-registry.registry"
+    },
+    {
+      "id": "cloud-registry.v1.artifact",
+      "description": "List artifacts with filtering by kind, registry kind/type, node path",
+      "argv": [
+        "cloud-registry",
+        "v1",
+        "artifact",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--registry-id",
+        "--registry-name",
+        "--limit",
+        "--page-token",
+        "--node-path",
+        "--kind",
+        "--registry-kind",
+        "--registry-type",
+        "--example-json"
+      ],
+      "parent_flag": "--registry-id",
+      "parent_command": "cloud-registry.v1.registry",
+      "alias_of": "cloud-registry.artifact"
+    },
+    {
+      "id": "cloud-registry.v1.registry",
+      "description": "Retrieves the list of Registry resources in the specified folder.",
+      "argv": [
+        "cloud-registry",
+        "v1",
+        "registry",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--folder-id",
+        "--limit",
+        "--page-token",
+        "--name-filter",
+        "--kind",
+        "--type",
+        "--status"
+      ],
+      "alias_of": "cloud-registry.registry"
+    },
+    {
+      "id": "cloud-registry.v1.registry.lifecycle-policy",
+      "description": "Retrieves the list of lifecycle policies in the specified registry.",
+      "argv": [
+        "cloud-registry",
+        "v1",
+        "registry",
+        "lifecycle-policy",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--registry-id",
+        "--limit",
+        "--page-token"
+      ],
+      "parent_flag": "--registry-id",
+      "parent_command": "cloud-registry.v1.registry",
+      "alias_of": "cloud-registry.registry.lifecycle-policy"
+    },
+    {
+      "id": "cloudrouter.routing-instance",
+      "description": "Retrieves the list of RoutingInstance resources in the specified folder.",
+      "argv": [
+        "cloudrouter",
+        "routing-instance",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--folder-id",
+        "--limit",
+        "--page-token",
+        "--filter"
+      ]
+    },
+    {
+      "id": "cloudrouter.v1.routing-instance",
+      "description": "Retrieves the list of RoutingInstance resources in the specified folder.",
+      "argv": [
+        "cloudrouter",
+        "v1",
+        "routing-instance",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--folder-id",
+        "--limit",
+        "--page-token",
+        "--filter"
+      ],
+      "alias_of": "cloudrouter.routing-instance"
+    },
+    {
+      "id": "cloudrouter.v2.peering",
+      "description": "Retrieves the list of peerings in the specified folder.",
+      "argv": [
+        "cloudrouter",
+        "v2",
+        "peering",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--folder-id",
+        "--limit",
+        "--page-token",
+        "--filter"
+      ]
+    },
+    {
+      "id": "cloudrouter.v2.routing-instance",
+      "description": "Retrieves the list of routing instances in the specified folder.",
+      "argv": [
+        "cloudrouter",
+        "v2",
+        "routing-instance",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--folder-id",
+        "--limit",
+        "--page-token",
+        "--filter"
+      ],
+      "alias_of": "cloudrouter.routing-instance"
+    },
+    {
+      "id": "compute.disk",
+      "description": "List disks",
+      "argv": [
+        "compute",
+        "disk",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "compute.disk-placement-group",
+      "description": "List disk placement groups",
+      "argv": [
+        "compute",
+        "disk-placement-group",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "compute.disk-type",
+      "description": "List disk types",
+      "argv": [
+        "compute",
+        "disk-type",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "reference",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "compute.filesystem",
+      "description": "List filesystems",
+      "argv": [
+        "compute",
+        "filesystem",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "compute.gpu-cluster",
+      "description": "List GPU clusters",
+      "argv": [
+        "compute",
+        "gpu-cluster",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "compute.host-group",
+      "description": "List host groups",
+      "argv": [
+        "compute",
+        "host-group",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "compute.host-type",
+      "description": "List host types",
+      "argv": [
+        "compute",
+        "host-type",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "reference",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "compute.image",
+      "description": "List images",
+      "argv": [
+        "compute",
+        "image",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "compute.instance",
+      "description": "List virtual machine instances",
+      "argv": [
+        "compute",
+        "instance",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "compute.instance-group",
+      "description": "List instance groups",
+      "argv": [
+        "compute",
+        "instance-group",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "compute.maintenance",
+      "description": "List maintenances",
+      "argv": [
+        "compute",
+        "maintenance",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "operational",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cloud-id",
+        "--folder-id",
+        "--resource-id",
+        "--filter",
+        "--order"
+      ]
+    },
+    {
+      "id": "compute.placement-group",
+      "description": "List placement groups",
+      "argv": [
+        "compute",
+        "placement-group",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "compute.reserved-instance-pool",
+      "description": "List reserved instance pools",
+      "argv": [
+        "compute",
+        "reserved-instance-pool",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "compute.snapshot",
+      "description": "List snapshots",
+      "argv": [
+        "compute",
+        "snapshot",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "compute.snapshot-schedule",
+      "description": "List snapshot schedules",
+      "argv": [
+        "compute",
+        "snapshot-schedule",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "compute.zone",
+      "description": "List availability zones",
+      "argv": [
+        "compute",
+        "zone",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "reference",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "container.cluster",
+      "description": "List Kubernetes clusters available in a folder.",
+      "argv": [
+        "container",
+        "cluster",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "container.image",
+      "description": "List Docker images.",
+      "argv": [
+        "container",
+        "image",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--registry-id",
+        "--registry-name",
+        "--repository-name",
+        "--limit",
+        "--page-token"
+      ],
+      "parent_flag": "--registry-id",
+      "parent_command": "container.registry"
+    },
+    {
+      "id": "container.node-group",
+      "description": "List node groups available in a folder.",
+      "argv": [
+        "container",
+        "node-group",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "container.registry",
+      "description": "List registries.",
+      "argv": [
+        "container",
+        "registry",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit",
+        "--page-token"
+      ]
+    },
+    {
+      "id": "container.repository",
+      "description": "List Docker image repositories.",
+      "argv": [
+        "container",
+        "repository",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--registry-id",
+        "--registry-name",
+        "--limit",
+        "--page-token"
+      ],
+      "parent_flag": "--registry-id",
+      "parent_command": "container.registry"
+    },
+    {
+      "id": "container.repository.lifecycle-policy",
+      "description": "List lifecycle policies.",
+      "argv": [
+        "container",
+        "repository",
+        "lifecycle-policy",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--registry-id",
+        "--registry-name",
+        "--repository-id",
+        "--repository-name",
+        "--limit",
+        "--page-token"
+      ],
+      "parent_flag": "--repository-id",
+      "parent_command": "container.repository"
+    },
+    {
+      "id": "dataproc.change-freeze",
+      "description": "List change freezes.",
+      "argv": [
+        "dataproc",
+        "change-freeze",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "operational",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit",
+        "--page-token",
+        "--resource-path",
+        "--filter"
+      ]
+    },
+    {
+      "id": "dataproc.cluster",
+      "description": "List clusters in a folder.",
+      "argv": [
+        "dataproc",
+        "cluster",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "dataproc.job",
+      "description": "List Dataproc jobs for a cluster.",
+      "argv": [
+        "dataproc",
+        "job",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cluster-id",
+        "--cluster-name",
+        "--limit"
+      ],
+      "parent_flag": "--cluster-id",
+      "parent_command": "dataproc.cluster"
+    },
+    {
+      "id": "dataproc.resource-preset",
+      "description": "List available resource presets for Data Proc.",
+      "argv": [
+        "dataproc",
+        "resource-preset",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "reference",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "dataproc.subcluster",
+      "description": "List subclusters in a cluster.",
+      "argv": [
+        "dataproc",
+        "subcluster",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cluster-id",
+        "--cluster-name",
+        "--limit"
+      ],
+      "parent_flag": "--cluster-id",
+      "parent_command": "dataproc.cluster"
+    },
+    {
+      "id": "datatransfer.endpoint",
+      "description": "List endpoints in folder",
+      "argv": [
+        "datatransfer",
+        "endpoint",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "datatransfer.transfer",
+      "description": "List transfers in folder",
+      "argv": [
+        "datatransfer",
+        "transfer",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "desktops.desktop",
+      "description": "List desktops",
+      "argv": [
+        "desktops",
+        "desktop",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "desktops.group",
+      "description": "List desktops",
+      "argv": [
+        "desktops",
+        "group",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "desktops.image",
+      "description": "List desktop images",
+      "argv": [
+        "desktops",
+        "image",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "dns.firewall",
+      "description": "List dns firewalls in folder.",
+      "argv": [
+        "dns",
+        "firewall",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "dns.inbound-endpoint",
+      "description": "List dns inbound endpoints in folder.",
+      "argv": [
+        "dns",
+        "inbound-endpoint",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "dns.zone",
+      "description": "List dns zones in folder.",
+      "argv": [
+        "dns",
+        "zone",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "iam.access-key",
+      "description": "List access keys for the specified service account",
+      "argv": [
+        "iam",
+        "access-key",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "credential",
+      "default": false,
+      "flags": [
+        "--service-account-id",
+        "--service-account-name",
+        "--limit"
+      ],
+      "parent_flag": "--service-account-id",
+      "parent_command": "iam.service-account"
+    },
+    {
+      "id": "iam.access-policy-template",
+      "description": "List available access policy templates",
+      "argv": [
+        "iam",
+        "access-policy-template",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "reference",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "iam.api-key",
+      "description": "List API keys for the specified service account",
+      "argv": [
+        "iam",
+        "api-key",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "credential",
+      "default": false,
+      "flags": [
+        "--service-account-id",
+        "--service-account-name",
+        "--limit"
+      ],
+      "parent_flag": "--service-account-id",
+      "parent_command": "iam.service-account"
+    },
+    {
+      "id": "iam.key",
+      "description": "List IAM keys for authenticated account or the specified service account",
+      "argv": [
+        "iam",
+        "key",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "credential",
+      "default": false,
+      "flags": [
+        "--service-account-id",
+        "--service-account-name",
+        "--limit"
+      ],
+      "parent_flag": "--service-account-id",
+      "parent_command": "iam.service-account"
+    },
+    {
+      "id": "iam.oauth-client",
+      "description": "List oauth-clients in the specified folder",
+      "argv": [
+        "iam",
+        "oauth-client",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "iam.oauth-client-secret",
+      "description": "List secrets of the specified oauth-client",
+      "argv": [
+        "iam",
+        "oauth-client-secret",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "secret",
+      "default": false,
+      "flags": [
+        "--oauth-client-id",
+        "--oauth-client-name"
+      ],
+      "parent_flag": "--oauth-client-id",
+      "parent_command": "iam.oauth-client"
+    },
+    {
+      "id": "iam.refresh-token",
+      "description": "List subjects Refresh Tokens",
+      "argv": [
+        "iam",
+        "refresh-token",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "secret",
+      "default": false,
+      "flags": [
+        "--limit",
+        "--subject-id",
+        "--client-id",
+        "--client-instance-info",
+        "--protection-level"
+      ]
+    },
+    {
+      "id": "iam.role",
+      "description": "List roles",
+      "argv": [
+        "iam",
+        "role",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "reference",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "iam.service-account",
+      "description": "List service accounts",
+      "argv": [
+        "iam",
+        "service-account",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "iam.service-control",
+      "description": "List service states",
+      "argv": [
+        "iam",
+        "service-control",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "iam.subject-details",
+      "description": "List members of the specified organization",
+      "argv": [
+        "iam",
+        "subject-details",
+        "list"
+      ],
+      "scope": "organization",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit",
+        "--field-mask",
+        "--organization-id",
+        "--filter"
+      ]
+    },
+    {
+      "id": "iam.workload-identity.federated-credential",
+      "description": "List federated credentials for the specified service account",
+      "argv": [
+        "iam",
+        "workload-identity",
+        "federated-credential",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "credential",
+      "default": false,
+      "flags": [
+        "--service-account-id",
+        "--service-account-name",
+        "--limit"
+      ],
+      "parent_flag": "--service-account-id",
+      "parent_command": "iam.service-account"
+    },
+    {
+      "id": "iam.workload-identity.oidc.federation",
+      "description": "List workload identity federations",
+      "argv": [
+        "iam",
+        "workload-identity",
+        "oidc",
+        "federation",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "iot.broker",
+      "description": "List IoT brokers",
+      "argv": [
+        "iot",
+        "broker",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "iot.broker.certificate",
+      "description": "List certificates associated with specified broker",
+      "argv": [
+        "iot",
+        "broker",
+        "certificate",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "credential",
+      "default": false,
+      "flags": [
+        "--broker-id",
+        "--broker-name"
+      ],
+      "parent_flag": "--broker-id",
+      "parent_command": "iot.broker"
+    },
+    {
+      "id": "iot.broker.password",
+      "description": "List passwords associated with specified broker",
+      "argv": [
+        "iot",
+        "broker",
+        "password",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "secret",
+      "default": false,
+      "flags": [
+        "--broker-id",
+        "--broker-name"
+      ],
+      "parent_flag": "--broker-id",
+      "parent_command": "iot.broker"
+    },
+    {
+      "id": "iot.device",
+      "description": "List IoT devices",
+      "argv": [
+        "iot",
+        "device",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit",
+        "--registry-id",
+        "--registry-name"
+      ]
+    },
+    {
+      "id": "iot.device.certificate",
+      "description": "List certificates associated with specified device",
+      "argv": [
+        "iot",
+        "device",
+        "certificate",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "credential",
+      "default": false,
+      "flags": [
+        "--device-id",
+        "--device-name"
+      ],
+      "parent_flag": "--device-id",
+      "parent_command": "iot.device"
+    },
+    {
+      "id": "iot.device.password",
+      "description": "List passwords associated with specified device",
+      "argv": [
+        "iot",
+        "device",
+        "password",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "secret",
+      "default": false,
+      "flags": [
+        "--device-id",
+        "--device-name"
+      ],
+      "parent_flag": "--device-id",
+      "parent_command": "iot.device"
+    },
+    {
+      "id": "iot.registry",
+      "description": "List IoT registries",
+      "argv": [
+        "iot",
+        "registry",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "iot.registry.certificate",
+      "description": "List certificates associated with specified registry",
+      "argv": [
+        "iot",
+        "registry",
+        "certificate",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "credential",
+      "default": false,
+      "flags": [
+        "--registry-id",
+        "--registry-name"
+      ],
+      "parent_flag": "--registry-id",
+      "parent_command": "iot.registry"
+    },
+    {
+      "id": "iot.registry.password",
+      "description": "List passwords associated with specified registry",
+      "argv": [
+        "iot",
+        "registry",
+        "password",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "secret",
+      "default": false,
+      "flags": [
+        "--registry-id",
+        "--registry-name"
+      ],
+      "parent_flag": "--registry-id",
+      "parent_command": "iot.registry"
+    },
+    {
+      "id": "iot.registry.yds-export",
+      "description": "List data stream exports associated with specified registry",
+      "argv": [
+        "iot",
+        "registry",
+        "yds-export",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--registry-id",
+        "--registry-name"
+      ],
+      "parent_flag": "--registry-id",
+      "parent_command": "iot.registry"
+    },
+    {
+      "id": "kms.asymmetric-encryption-key",
+      "description": "List asymmetric encryption keys of the specified folder",
+      "argv": [
+        "kms",
+        "asymmetric-encryption-key",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "kms.asymmetric-signature-key",
+      "description": "List asymmetric signature keys of the specified folder",
+      "argv": [
+        "kms",
+        "asymmetric-signature-key",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "kms.symmetric-key",
+      "description": "List symmetric keys of the specified folder",
+      "argv": [
+        "kms",
+        "symmetric-key",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "load-balancer.network-load-balancer",
+      "description": "List load balancers",
+      "argv": [
+        "load-balancer",
+        "network-load-balancer",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "load-balancer.target-group",
+      "description": "List target groups",
+      "argv": [
+        "load-balancer",
+        "target-group",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "lockbox.secret",
+      "description": "List secrets for the specified folder",
+      "argv": [
+        "lockbox",
+        "secret",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "logging.group",
+      "description": "List log groups",
+      "argv": [
+        "logging",
+        "group",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "logging.sink",
+      "description": "List log sinks",
+      "argv": [
+        "logging",
+        "sink",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "managed-airflow.change-freeze",
+      "description": "List change freezes.",
+      "argv": [
+        "managed-airflow",
+        "change-freeze",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "operational",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit",
+        "--page-token",
+        "--resource-path",
+        "--filter"
+      ]
+    },
+    {
+      "id": "managed-airflow.cluster",
+      "description": "List Airflow clusters",
+      "argv": [
+        "managed-airflow",
+        "cluster",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "managed-clickhouse.backup",
+      "description": "List ClickHouse backups available in a folder.",
+      "argv": [
+        "managed-clickhouse",
+        "backup",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "managed-clickhouse.change-freeze",
+      "description": "List change freezes.",
+      "argv": [
+        "managed-clickhouse",
+        "change-freeze",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "operational",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit",
+        "--page-token",
+        "--resource-path",
+        "--filter"
+      ]
+    },
+    {
+      "id": "managed-clickhouse.cluster",
+      "description": "List ClickHouse clusters in a folder.",
+      "argv": [
+        "managed-clickhouse",
+        "cluster",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "managed-clickhouse.database",
+      "description": "List databases for a ClickHouse cluster.",
+      "argv": [
+        "managed-clickhouse",
+        "database",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cluster-id",
+        "--cluster-name",
+        "--limit"
+      ],
+      "parent_flag": "--cluster-id",
+      "parent_command": "managed-clickhouse.cluster"
+    },
+    {
+      "id": "managed-clickhouse.extension",
+      "description": "List available ClickHouse extensions.",
+      "argv": [
+        "managed-clickhouse",
+        "extension",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "reference",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "managed-clickhouse.format-schema",
+      "description": "List format schemas in a ClickHouse cluster.",
+      "argv": [
+        "managed-clickhouse",
+        "format-schema",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cluster-id",
+        "--cluster-name",
+        "--limit"
+      ],
+      "parent_flag": "--cluster-id",
+      "parent_command": "managed-clickhouse.cluster"
+    },
+    {
+      "id": "managed-clickhouse.hosts",
+      "description": "List hosts for a ClickHouse cluster.",
+      "argv": [
+        "managed-clickhouse",
+        "hosts",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cluster-id",
+        "--cluster-name",
+        "--limit"
+      ],
+      "parent_flag": "--cluster-id",
+      "parent_command": "managed-clickhouse.cluster"
+    },
+    {
+      "id": "managed-clickhouse.maintenance",
+      "description": "List maintenances.",
+      "argv": [
+        "managed-clickhouse",
+        "maintenance",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "operational",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit",
+        "--page-token",
+        "--cloud-id",
+        "--folder-id",
+        "--resource-id",
+        "--filter",
+        "--order-by"
+      ]
+    },
+    {
+      "id": "managed-clickhouse.ml-model",
+      "description": "List machine learning models in a ClickHouse cluster.",
+      "argv": [
+        "managed-clickhouse",
+        "ml-model",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cluster-id",
+        "--cluster-name",
+        "--limit"
+      ],
+      "parent_flag": "--cluster-id",
+      "parent_command": "managed-clickhouse.cluster"
+    },
+    {
+      "id": "managed-clickhouse.resource-preset",
+      "description": "List available resource presets for Managed Service for ClickHouse.",
+      "argv": [
+        "managed-clickhouse",
+        "resource-preset",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "reference",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "managed-clickhouse.shard-groups",
+      "description": "List shard groups for a ClickHouse cluster.",
+      "argv": [
+        "managed-clickhouse",
+        "shard-groups",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cluster-id",
+        "--cluster-name",
+        "--limit"
+      ],
+      "parent_flag": "--cluster-id",
+      "parent_command": "managed-clickhouse.cluster"
+    },
+    {
+      "id": "managed-clickhouse.shards",
+      "description": "List shards for a ClickHouse cluster.",
+      "argv": [
+        "managed-clickhouse",
+        "shards",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cluster-id",
+        "--cluster-name",
+        "--limit"
+      ],
+      "parent_flag": "--cluster-id",
+      "parent_command": "managed-clickhouse.cluster"
+    },
+    {
+      "id": "managed-clickhouse.user",
+      "description": "List users for a ClickHouse cluster.",
+      "argv": [
+        "managed-clickhouse",
+        "user",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cluster-id",
+        "--cluster-name",
+        "--limit"
+      ],
+      "parent_flag": "--cluster-id",
+      "parent_command": "managed-clickhouse.cluster"
+    },
+    {
+      "id": "managed-clickhouse.version",
+      "description": "List available ClickHouse versions.",
+      "argv": [
+        "managed-clickhouse",
+        "version",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "reference",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "managed-gitlab.instance",
+      "description": "List Gitlab instances",
+      "argv": [
+        "managed-gitlab",
+        "instance",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "managed-greenplum.backup",
+      "description": "List available backups",
+      "argv": [
+        "managed-greenplum",
+        "backup",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "managed-greenplum.change-freeze",
+      "description": "List change freezes.",
+      "argv": [
+        "managed-greenplum",
+        "change-freeze",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "operational",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit",
+        "--page-token",
+        "--resource-path",
+        "--filter"
+      ]
+    },
+    {
+      "id": "managed-greenplum.cluster",
+      "description": "List Greenplum clusters",
+      "argv": [
+        "managed-greenplum",
+        "cluster",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "managed-greenplum.hba-rules",
+      "description": "List hba-rules for specified Greenplum cluster",
+      "argv": [
+        "managed-greenplum",
+        "hba-rules",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cluster-id",
+        "--cluster-name"
+      ],
+      "parent_flag": "--cluster-id",
+      "parent_command": "managed-greenplum.cluster"
+    },
+    {
+      "id": "managed-greenplum.maintenance",
+      "description": "List maintenances.",
+      "argv": [
+        "managed-greenplum",
+        "maintenance",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "operational",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit",
+        "--page-token",
+        "--cloud-id",
+        "--folder-id",
+        "--resource-id",
+        "--filter",
+        "--order-by"
+      ]
+    },
+    {
+      "id": "managed-greenplum.pxf-datasource",
+      "description": "List pxf-datasources for specified Greenplum cluster",
+      "argv": [
+        "managed-greenplum",
+        "pxf-datasource",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cluster-id",
+        "--cluster-name"
+      ],
+      "parent_flag": "--cluster-id",
+      "parent_command": "managed-greenplum.cluster"
+    },
+    {
+      "id": "managed-greenplum.resource-groups",
+      "description": "List resource group for specified Greenplum cluster",
+      "argv": [
+        "managed-greenplum",
+        "resource-groups",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cluster-id",
+        "--cluster-name"
+      ],
+      "parent_flag": "--cluster-id",
+      "parent_command": "managed-greenplum.cluster"
+    },
+    {
+      "id": "managed-greenplum.users",
+      "description": "List user for specified Greenplum cluster",
+      "argv": [
+        "managed-greenplum",
+        "users",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cluster-id",
+        "--cluster-name"
+      ],
+      "parent_flag": "--cluster-id",
+      "parent_command": "managed-greenplum.cluster"
+    },
+    {
+      "id": "managed-kafka.change-freeze",
+      "description": "List change freezes.",
+      "argv": [
+        "managed-kafka",
+        "change-freeze",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "operational",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit",
+        "--page-token",
+        "--resource-path",
+        "--filter"
+      ]
+    },
+    {
+      "id": "managed-kafka.cluster",
+      "description": "List Kafka clusters",
+      "argv": [
+        "managed-kafka",
+        "cluster",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "managed-kafka.connector",
+      "description": "List connectors of a Kafka cluster.",
+      "argv": [
+        "managed-kafka",
+        "connector",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cluster-id",
+        "--cluster-name",
+        "--limit"
+      ],
+      "parent_flag": "--cluster-id",
+      "parent_command": "managed-kafka.cluster"
+    },
+    {
+      "id": "managed-kafka.maintenance",
+      "description": "List maintenances.",
+      "argv": [
+        "managed-kafka",
+        "maintenance",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "operational",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit",
+        "--page-token",
+        "--cloud-id",
+        "--folder-id",
+        "--resource-id",
+        "--filter",
+        "--order-by"
+      ]
+    },
+    {
+      "id": "managed-kafka.topic",
+      "description": "List topics of a Kafka cluster.",
+      "argv": [
+        "managed-kafka",
+        "topic",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cluster-id",
+        "--cluster-name",
+        "--limit"
+      ],
+      "parent_flag": "--cluster-id",
+      "parent_command": "managed-kafka.cluster"
+    },
+    {
+      "id": "managed-kafka.user",
+      "description": "List users of a Kafka cluster.",
+      "argv": [
+        "managed-kafka",
+        "user",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cluster-id",
+        "--cluster-name",
+        "--limit"
+      ],
+      "parent_flag": "--cluster-id",
+      "parent_command": "managed-kafka.cluster"
+    },
+    {
+      "id": "managed-kubernetes.cluster",
+      "description": "List Kubernetes clusters available in a folder.",
+      "argv": [
+        "managed-kubernetes",
+        "cluster",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "managed-kubernetes.marketplace.helm-release",
+      "description": "Get information about all Helm Releases installed on the cluster.",
+      "argv": [
+        "managed-kubernetes",
+        "marketplace",
+        "helm-release",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cluster-id",
+        "--cluster-name"
+      ],
+      "parent_flag": "--cluster-id",
+      "parent_command": "managed-kubernetes.cluster"
+    },
+    {
+      "id": "managed-kubernetes.node-group",
+      "description": "List node groups available in a folder.",
+      "argv": [
+        "managed-kubernetes",
+        "node-group",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "managed-kubernetes.resource-preset",
+      "description": "List available master resource presets.",
+      "argv": [
+        "managed-kubernetes",
+        "resource-preset",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "reference",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "managed-metastore.change-freeze",
+      "description": "List change freezes.",
+      "argv": [
+        "managed-metastore",
+        "change-freeze",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "operational",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit",
+        "--page-token",
+        "--resource-path",
+        "--filter"
+      ]
+    },
+    {
+      "id": "managed-metastore.cluster",
+      "description": "List Metastore clusters",
+      "argv": [
+        "managed-metastore",
+        "cluster",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "managed-mongodb.backup",
+      "description": "List MongoDB backups available in a folder.",
+      "argv": [
+        "managed-mongodb",
+        "backup",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "managed-mongodb.backup-retention-policy",
+      "description": "List available backup retention policies",
+      "argv": [
+        "managed-mongodb",
+        "backup-retention-policy",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cluster-id",
+        "--cluster-name",
+        "--limit"
+      ],
+      "parent_flag": "--cluster-id",
+      "parent_command": "managed-mongodb.cluster"
+    },
+    {
+      "id": "managed-mongodb.change-freeze",
+      "description": "List change freezes.",
+      "argv": [
+        "managed-mongodb",
+        "change-freeze",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "operational",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit",
+        "--page-token",
+        "--resource-path",
+        "--filter"
+      ]
+    },
+    {
+      "id": "managed-mongodb.cluster",
+      "description": "List MongoDB clusters in a folder.",
+      "argv": [
+        "managed-mongodb",
+        "cluster",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "managed-mongodb.database",
+      "description": "List databases for a MongoDB cluster.",
+      "argv": [
+        "managed-mongodb",
+        "database",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cluster-id",
+        "--cluster-name",
+        "--limit"
+      ],
+      "parent_flag": "--cluster-id",
+      "parent_command": "managed-mongodb.cluster"
+    },
+    {
+      "id": "managed-mongodb.hosts",
+      "description": "List hosts for a MongoDB cluster. Use format for additional info",
+      "argv": [
+        "managed-mongodb",
+        "hosts",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cluster-id",
+        "--cluster-name",
+        "--limit"
+      ],
+      "parent_flag": "--cluster-id",
+      "parent_command": "managed-mongodb.cluster"
+    },
+    {
+      "id": "managed-mongodb.maintenance",
+      "description": "List maintenances.",
+      "argv": [
+        "managed-mongodb",
+        "maintenance",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "operational",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit",
+        "--page-token",
+        "--cloud-id",
+        "--folder-id",
+        "--resource-id",
+        "--filter",
+        "--order-by"
+      ]
+    },
+    {
+      "id": "managed-mongodb.resource-preset",
+      "description": "List available resource presets for Managed Service for MongoDB.",
+      "argv": [
+        "managed-mongodb",
+        "resource-preset",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "reference",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "managed-mongodb.shards",
+      "description": "List shards for a MongoDB cluster.",
+      "argv": [
+        "managed-mongodb",
+        "shards",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cluster-id",
+        "--cluster-name",
+        "--limit"
+      ],
+      "parent_flag": "--cluster-id",
+      "parent_command": "managed-mongodb.cluster"
+    },
+    {
+      "id": "managed-mongodb.user",
+      "description": "List users for a MongoDB cluster.",
+      "argv": [
+        "managed-mongodb",
+        "user",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cluster-id",
+        "--cluster-name",
+        "--limit"
+      ],
+      "parent_flag": "--cluster-id",
+      "parent_command": "managed-mongodb.cluster"
+    },
+    {
+      "id": "managed-mysql.backup",
+      "description": "List available backups",
+      "argv": [
+        "managed-mysql",
+        "backup",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "managed-mysql.backup-retention-policy",
+      "description": "List backup retention policies for the specified MySQL cluster",
+      "argv": [
+        "managed-mysql",
+        "backup-retention-policy",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cluster-id",
+        "--cluster-name",
+        "--limit"
+      ],
+      "parent_flag": "--cluster-id",
+      "parent_command": "managed-mysql.cluster"
+    },
+    {
+      "id": "managed-mysql.change-freeze",
+      "description": "List change freezes.",
+      "argv": [
+        "managed-mysql",
+        "change-freeze",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "operational",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit",
+        "--page-token",
+        "--resource-path",
+        "--filter"
+      ]
+    },
+    {
+      "id": "managed-mysql.cluster",
+      "description": "List MySQL clusters",
+      "argv": [
+        "managed-mysql",
+        "cluster",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "managed-mysql.database",
+      "description": "List MySQL databases",
+      "argv": [
+        "managed-mysql",
+        "database",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cluster-id",
+        "--cluster-name",
+        "--limit"
+      ],
+      "parent_flag": "--cluster-id",
+      "parent_command": "managed-mysql.cluster"
+    },
+    {
+      "id": "managed-mysql.hosts",
+      "description": "List hosts for the specified MySQL cluster",
+      "argv": [
+        "managed-mysql",
+        "hosts",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cluster-id",
+        "--cluster-name",
+        "--limit"
+      ],
+      "parent_flag": "--cluster-id",
+      "parent_command": "managed-mysql.cluster"
+    },
+    {
+      "id": "managed-mysql.maintenance",
+      "description": "List maintenances.",
+      "argv": [
+        "managed-mysql",
+        "maintenance",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "operational",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit",
+        "--page-token",
+        "--cloud-id",
+        "--folder-id",
+        "--resource-id",
+        "--filter",
+        "--order-by"
+      ]
+    },
+    {
+      "id": "managed-mysql.resource-preset",
+      "description": "List available MySQL resource presets.",
+      "argv": [
+        "managed-mysql",
+        "resource-preset",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "reference",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "managed-mysql.user",
+      "description": "List users for the specified MySQL cluster",
+      "argv": [
+        "managed-mysql",
+        "user",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cluster-id",
+        "--cluster-name",
+        "--limit"
+      ],
+      "parent_flag": "--cluster-id",
+      "parent_command": "managed-mysql.cluster"
+    },
+    {
+      "id": "managed-opensearch.backup",
+      "description": "List available OpenSearch backups in a folder.",
+      "argv": [
+        "managed-opensearch",
+        "backup",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "managed-opensearch.change-freeze",
+      "description": "List change freezes.",
+      "argv": [
+        "managed-opensearch",
+        "change-freeze",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "operational",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit",
+        "--page-token",
+        "--resource-path",
+        "--filter"
+      ]
+    },
+    {
+      "id": "managed-opensearch.cluster",
+      "description": "List OpenSearch clusters in a folder",
+      "argv": [
+        "managed-opensearch",
+        "cluster",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "managed-opensearch.extension",
+      "description": "List extensions for a managed OpenSearch cluster.",
+      "argv": [
+        "managed-opensearch",
+        "extension",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit",
+        "--cluster-id",
+        "--cluster-name"
+      ],
+      "parent_flag": "--cluster-id",
+      "parent_command": "managed-opensearch.cluster"
+    },
+    {
+      "id": "managed-opensearch.maintenance",
+      "description": "List maintenances.",
+      "argv": [
+        "managed-opensearch",
+        "maintenance",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "operational",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit",
+        "--page-token",
+        "--cloud-id",
+        "--folder-id",
+        "--resource-id",
+        "--filter",
+        "--order-by"
+      ]
+    },
+    {
+      "id": "managed-postgresql.backup",
+      "description": "List available backups",
+      "argv": [
+        "managed-postgresql",
+        "backup",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "managed-postgresql.backup-retention-policy",
+      "description": "List available backup retention policies",
+      "argv": [
+        "managed-postgresql",
+        "backup-retention-policy",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cluster-id",
+        "--cluster-name",
+        "--limit"
+      ],
+      "parent_flag": "--cluster-id",
+      "parent_command": "managed-postgresql.cluster"
+    },
+    {
+      "id": "managed-postgresql.change-freeze",
+      "description": "List change freezes.",
+      "argv": [
+        "managed-postgresql",
+        "change-freeze",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "operational",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit",
+        "--page-token",
+        "--resource-path",
+        "--filter"
+      ]
+    },
+    {
+      "id": "managed-postgresql.cluster",
+      "description": "List PostgreSQL clusters",
+      "argv": [
+        "managed-postgresql",
+        "cluster",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "managed-postgresql.database",
+      "description": "List PostgreSQL databases",
+      "argv": [
+        "managed-postgresql",
+        "database",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cluster-id",
+        "--cluster-name",
+        "--limit"
+      ],
+      "parent_flag": "--cluster-id",
+      "parent_command": "managed-postgresql.cluster"
+    },
+    {
+      "id": "managed-postgresql.hosts",
+      "description": "List hosts for the specified PostgreSQL cluster",
+      "argv": [
+        "managed-postgresql",
+        "hosts",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cluster-id",
+        "--cluster-name",
+        "--limit"
+      ],
+      "parent_flag": "--cluster-id",
+      "parent_command": "managed-postgresql.cluster"
+    },
+    {
+      "id": "managed-postgresql.maintenance",
+      "description": "List maintenances.",
+      "argv": [
+        "managed-postgresql",
+        "maintenance",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "operational",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit",
+        "--page-token",
+        "--cloud-id",
+        "--folder-id",
+        "--resource-id",
+        "--filter",
+        "--order-by"
+      ]
+    },
+    {
+      "id": "managed-postgresql.resource-preset",
+      "description": "List available PostgreSQL resource presets.",
+      "argv": [
+        "managed-postgresql",
+        "resource-preset",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "reference",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "managed-postgresql.user",
+      "description": "List users for the specified PostgreSQL cluster",
+      "argv": [
+        "managed-postgresql",
+        "user",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cluster-id",
+        "--cluster-name",
+        "--limit"
+      ],
+      "parent_flag": "--cluster-id",
+      "parent_command": "managed-postgresql.cluster"
+    },
+    {
+      "id": "managed-redis.backup",
+      "description": "List available backups",
+      "argv": [
+        "managed-redis",
+        "backup",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "managed-redis.backup-retention-policy",
+      "description": "List available backup retention policies",
+      "argv": [
+        "managed-redis",
+        "backup-retention-policy",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cluster-id",
+        "--cluster-name",
+        "--limit"
+      ],
+      "parent_flag": "--cluster-id",
+      "parent_command": "managed-redis.cluster"
+    },
+    {
+      "id": "managed-redis.change-freeze",
+      "description": "List change freezes.",
+      "argv": [
+        "managed-redis",
+        "change-freeze",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "operational",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit",
+        "--page-token",
+        "--resource-path",
+        "--filter"
+      ]
+    },
+    {
+      "id": "managed-redis.cluster",
+      "description": "List Redis clusters",
+      "argv": [
+        "managed-redis",
+        "cluster",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "managed-redis.hosts",
+      "description": "List hosts for the specified Redis cluster",
+      "argv": [
+        "managed-redis",
+        "hosts",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cluster-id",
+        "--cluster-name",
+        "--limit"
+      ],
+      "parent_flag": "--cluster-id",
+      "parent_command": "managed-redis.cluster"
+    },
+    {
+      "id": "managed-redis.maintenance",
+      "description": "List maintenances.",
+      "argv": [
+        "managed-redis",
+        "maintenance",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "operational",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit",
+        "--page-token",
+        "--cloud-id",
+        "--folder-id",
+        "--resource-id",
+        "--filter",
+        "--order-by"
+      ]
+    },
+    {
+      "id": "managed-redis.resource-preset",
+      "description": "List available Redis resource presets",
+      "argv": [
+        "managed-redis",
+        "resource-preset",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "reference",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "managed-redis.shards",
+      "description": "List shards for a Redis cluster.",
+      "argv": [
+        "managed-redis",
+        "shards",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cluster-id",
+        "--cluster-name",
+        "--limit"
+      ],
+      "parent_flag": "--cluster-id",
+      "parent_command": "managed-redis.cluster"
+    },
+    {
+      "id": "managed-redis.user",
+      "description": "List users for the specified Redis cluster",
+      "argv": [
+        "managed-redis",
+        "user",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cluster-id",
+        "--cluster-name",
+        "--limit"
+      ],
+      "parent_flag": "--cluster-id",
+      "parent_command": "managed-redis.cluster"
+    },
+    {
+      "id": "managed-sharded-postgresql.backup",
+      "description": "List available backups",
+      "argv": [
+        "managed-sharded-postgresql",
+        "backup",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "managed-sharded-postgresql.change-freeze",
+      "description": "List change freezes.",
+      "argv": [
+        "managed-sharded-postgresql",
+        "change-freeze",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "operational",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit",
+        "--page-token",
+        "--resource-path",
+        "--filter"
+      ]
+    },
+    {
+      "id": "managed-sharded-postgresql.cluster",
+      "description": "List Sharded PostgreSQL clusters",
+      "argv": [
+        "managed-sharded-postgresql",
+        "cluster",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "managed-sharded-postgresql.database",
+      "description": "List Sharded PostgreSQL databases",
+      "argv": [
+        "managed-sharded-postgresql",
+        "database",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cluster-id",
+        "--cluster-name",
+        "--limit"
+      ],
+      "parent_flag": "--cluster-id",
+      "parent_command": "managed-sharded-postgresql.cluster"
+    },
+    {
+      "id": "managed-sharded-postgresql.hosts",
+      "description": "List hosts for the specified Sharded PostgreSQL cluster",
+      "argv": [
+        "managed-sharded-postgresql",
+        "hosts",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cluster-id",
+        "--cluster-name",
+        "--limit"
+      ],
+      "parent_flag": "--cluster-id",
+      "parent_command": "managed-sharded-postgresql.cluster"
+    },
+    {
+      "id": "managed-sharded-postgresql.maintenance",
+      "description": "List maintenances.",
+      "argv": [
+        "managed-sharded-postgresql",
+        "maintenance",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "operational",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit",
+        "--page-token",
+        "--cloud-id",
+        "--folder-id",
+        "--resource-id",
+        "--filter",
+        "--order-by"
+      ]
+    },
+    {
+      "id": "managed-sharded-postgresql.user",
+      "description": "List users for the specified Sharded PostgreSQL cluster",
+      "argv": [
+        "managed-sharded-postgresql",
+        "user",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cluster-id",
+        "--cluster-name",
+        "--limit"
+      ],
+      "parent_flag": "--cluster-id",
+      "parent_command": "managed-sharded-postgresql.cluster"
+    },
+    {
+      "id": "managed-spark.change-freeze",
+      "description": "List change freezes.",
+      "argv": [
+        "managed-spark",
+        "change-freeze",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "operational",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit",
+        "--page-token",
+        "--resource-path",
+        "--filter"
+      ]
+    },
+    {
+      "id": "managed-spark.cluster",
+      "description": "List Spark clusters",
+      "argv": [
+        "managed-spark",
+        "cluster",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "managed-spark.job",
+      "description": "List Spark jobs for a cluster.",
+      "argv": [
+        "managed-spark",
+        "job",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cluster-id",
+        "--cluster-name",
+        "--limit"
+      ],
+      "parent_flag": "--cluster-id",
+      "parent_command": "managed-spark.cluster"
+    },
+    {
+      "id": "managed-trino.catalog",
+      "description": "List Trino catalogs",
+      "argv": [
+        "managed-trino",
+        "catalog",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--cluster-id",
+        "--cluster-name",
+        "--limit"
+      ],
+      "parent_flag": "--cluster-id",
+      "parent_command": "managed-trino.cluster"
+    },
+    {
+      "id": "managed-trino.change-freeze",
+      "description": "List change freezes.",
+      "argv": [
+        "managed-trino",
+        "change-freeze",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "operational",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit",
+        "--page-token",
+        "--resource-path",
+        "--filter"
+      ]
+    },
+    {
+      "id": "managed-trino.cluster",
+      "description": "List Trino clusters",
+      "argv": [
+        "managed-trino",
+        "cluster",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "managed-ytsaurus.cluster",
+      "description": "List YTsaurus clusters.",
+      "argv": [
+        "managed-ytsaurus",
+        "cluster",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "managed-zonalshift.config",
+      "description": "List zonal shift configurations.",
+      "argv": [
+        "managed-zonalshift",
+        "config",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit",
+        "--cluster-id"
+      ],
+      "parent_flag": "--cluster-id"
+    },
+    {
+      "id": "managed-zonalshift.drill-type",
+      "description": "List supported zonal shift drill types.",
+      "argv": [
+        "managed-zonalshift",
+        "drill-type",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "reference",
+      "sensitivity": "none",
+      "default": false,
+      "flags": []
+    },
+    {
+      "id": "managed-zonalshift.task",
+      "description": "List tasks of a zonal shift configuration.",
+      "argv": [
+        "managed-zonalshift",
+        "task",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit",
+        "--config-id"
+      ],
+      "parent_flag": "--config-id",
+      "parent_command": "managed-zonalshift.config"
+    },
+    {
+      "id": "metadata-hub.connection-manager.connection",
+      "description": "List connections",
+      "argv": [
+        "metadata-hub",
+        "connection-manager",
+        "connection",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit",
+        "--author-id",
+        "--folder-id",
+        "--mdb-cluster-id",
+        "--name-pattern-or-id",
+        "--db-type",
+        "--with-can-use",
+        "--is-on-premise",
+        "--is-manual"
+      ]
+    },
+    {
+      "id": "organization-manager.federation.saml",
+      "description": "List federations",
+      "argv": [
+        "organization-manager",
+        "federation",
+        "saml",
+        "list"
+      ],
+      "scope": "organization",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--organization-id",
+        "--limit"
+      ]
+    },
+    {
+      "id": "organization-manager.federation.saml.certificate",
+      "description": "List certificates",
+      "argv": [
+        "organization-manager",
+        "federation",
+        "saml",
+        "certificate",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "credential",
+      "default": false,
+      "flags": [
+        "--limit",
+        "--federation-id",
+        "--federation-name"
+      ],
+      "parent_flag": "--federation-id"
+    },
+    {
+      "id": "organization-manager.group",
+      "description": "List groups",
+      "argv": [
+        "organization-manager",
+        "group",
+        "list"
+      ],
+      "scope": "organization",
+      "kind": "resource",
+      "sensitivity": "pii",
+      "default": false,
+      "flags": [
+        "--organization-id",
+        "--limit"
+      ]
+    },
+    {
+      "id": "organization-manager.idp.application.oauth.application",
+      "description": "List OAuth applications",
+      "argv": [
+        "organization-manager",
+        "idp",
+        "application",
+        "oauth",
+        "application",
+        "list"
+      ],
+      "scope": "organization",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--organization-id",
+        "--limit"
+      ]
+    },
+    {
+      "id": "organization-manager.idp.application.saml.application",
+      "description": "List SAML applications",
+      "argv": [
+        "organization-manager",
+        "idp",
+        "application",
+        "saml",
+        "application",
+        "list"
+      ],
+      "scope": "organization",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--organization-id",
+        "--limit"
+      ]
+    },
+    {
+      "id": "organization-manager.idp.application.saml.signature-certificate",
+      "description": "List SAML signature certificates",
+      "argv": [
+        "organization-manager",
+        "idp",
+        "application",
+        "saml",
+        "signature-certificate",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "credential",
+      "default": false,
+      "flags": [
+        "--id",
+        "--limit",
+        "--application-id"
+      ],
+      "parent_flag": "--application-id",
+      "parent_command": "organization-manager.idp.application.saml.application"
+    },
+    {
+      "id": "organization-manager.idp.synchronization-session",
+      "description": "List synchronization sessions for the specified subject container",
+      "argv": [
+        "organization-manager",
+        "idp",
+        "synchronization-session",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "operational",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit",
+        "--subject-container-id",
+        "--filter"
+      ],
+      "parent_flag": "--subject-container-id"
+    },
+    {
+      "id": "organization-manager.idp.user",
+      "description": "List users in the specified user pool",
+      "argv": [
+        "organization-manager",
+        "idp",
+        "user",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "pii",
+      "default": false,
+      "flags": [
+        "--limit",
+        "--userpool-id",
+        "--filter"
+      ],
+      "parent_flag": "--userpool-id",
+      "parent_command": "organization-manager.idp.userpool"
+    },
+    {
+      "id": "organization-manager.idp.userpool",
+      "description": "List user pools",
+      "argv": [
+        "organization-manager",
+        "idp",
+        "userpool",
+        "list"
+      ],
+      "scope": "organization",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit",
+        "--organization-id",
+        "--filter"
+      ]
+    },
+    {
+      "id": "organization-manager.idp.userpool.domain",
+      "description": "List domains for the specified user pool",
+      "argv": [
+        "organization-manager",
+        "idp",
+        "userpool",
+        "domain",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit",
+        "--id",
+        "--filter"
+      ],
+      "parent_flag": "--id"
+    },
+    {
+      "id": "organization-manager.mfa-enforcement",
+      "description": "List mfa enforcements",
+      "argv": [
+        "organization-manager",
+        "mfa-enforcement",
+        "list"
+      ],
+      "scope": "organization",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--organization-id",
+        "--limit"
+      ]
+    },
+    {
+      "id": "organization-manager.organization",
+      "description": "List organizations",
+      "argv": [
+        "organization-manager",
+        "organization",
+        "list"
+      ],
+      "scope": "account",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "organization-manager.oslogin.profile",
+      "description": "List OS Login profiles",
+      "argv": [
+        "organization-manager",
+        "oslogin",
+        "profile",
+        "list"
+      ],
+      "scope": "organization",
+      "kind": "resource",
+      "sensitivity": "pii",
+      "default": false,
+      "flags": [
+        "--limit",
+        "--organization-id",
+        "--filter"
+      ]
+    },
+    {
+      "id": "organization-manager.oslogin.user-ssh-key",
+      "description": "List SSH keys",
+      "argv": [
+        "organization-manager",
+        "oslogin",
+        "user-ssh-key",
+        "list"
+      ],
+      "scope": "organization",
+      "kind": "resource",
+      "sensitivity": "credential",
+      "default": false,
+      "flags": [
+        "--limit",
+        "--organization-id",
+        "--subject-id"
+      ]
+    },
+    {
+      "id": "organization-manager.user",
+      "description": "List user accounts of the specified organization",
+      "argv": [
+        "organization-manager",
+        "user",
+        "list"
+      ],
+      "scope": "organization",
+      "kind": "resource",
+      "sensitivity": "pii",
+      "default": false,
+      "flags": [
+        "--organization-id",
+        "--limit"
+      ]
+    },
+    {
+      "id": "quota-manager.quota-limit",
+      "description": "List quota limits",
+      "argv": [
+        "quota-manager",
+        "quota-limit",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--resource-id",
+        "--resource-type",
+        "--service"
+      ]
+    },
+    {
+      "id": "quota-manager.quota-request",
+      "description": "List quota requests",
+      "argv": [
+        "quota-manager",
+        "quota-request",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--resource-id",
+        "--resource-type",
+        "--filter",
+        "--limit"
+      ]
+    },
+    {
+      "id": "resource-manager.cloud",
+      "description": "List clouds",
+      "argv": [
+        "resource-manager",
+        "cloud",
+        "list"
+      ],
+      "scope": "account",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit",
+        "--organization-id"
+      ]
+    },
+    {
+      "id": "resource-manager.folder",
+      "description": "List folders",
+      "argv": [
+        "resource-manager",
+        "folder",
+        "list"
+      ],
+      "scope": "cloud",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "serverless.api-gateway",
+      "description": "List API Gateways",
+      "argv": [
+        "serverless",
+        "api-gateway",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "serverless.container",
+      "description": "List containers",
+      "argv": [
+        "serverless",
+        "container",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "serverless.container.revision",
+      "description": "List container revisions",
+      "argv": [
+        "serverless",
+        "container",
+        "revision",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--container-id",
+        "--container-name",
+        "--limit"
+      ],
+      "parent_flag": "--container-id",
+      "parent_command": "serverless.container"
+    },
+    {
+      "id": "serverless.eventrouter.bus",
+      "description": "List buses",
+      "argv": [
+        "serverless",
+        "eventrouter",
+        "bus",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "serverless.eventrouter.connector",
+      "description": "List connectors",
+      "argv": [
+        "serverless",
+        "eventrouter",
+        "connector",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "serverless.eventrouter.rule",
+      "description": "List rulees",
+      "argv": [
+        "serverless",
+        "eventrouter",
+        "rule",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "serverless.function",
+      "description": "List functions",
+      "argv": [
+        "serverless",
+        "function",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "serverless.function.runtime",
+      "description": "List runtimes",
+      "argv": [
+        "serverless",
+        "function",
+        "runtime",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "reference",
+      "sensitivity": "none",
+      "default": false,
+      "flags": []
+    },
+    {
+      "id": "serverless.function.version",
+      "description": "List function versions",
+      "argv": [
+        "serverless",
+        "function",
+        "version",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--function-id",
+        "--function-name",
+        "--limit"
+      ],
+      "parent_flag": "--function-id",
+      "parent_command": "serverless.function"
+    },
+    {
+      "id": "serverless.mcp-gateway",
+      "description": "List MCP Gateways",
+      "argv": [
+        "serverless",
+        "mcp-gateway",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "serverless.mdbproxy",
+      "description": "List proxies",
+      "argv": [
+        "serverless",
+        "mdbproxy",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "serverless.trigger",
+      "description": "List triggers",
+      "argv": [
+        "serverless",
+        "trigger",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "serverless.trigger.v1",
+      "description": "List triggers",
+      "argv": [
+        "serverless",
+        "trigger",
+        "v1",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit"
+      ],
+      "alias_of": "serverless.trigger"
+    },
+    {
+      "id": "serverless.trigger.v2",
+      "description": "List triggers",
+      "argv": [
+        "serverless",
+        "trigger",
+        "v2",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit"
+      ],
+      "alias_of": "serverless.trigger"
+    },
+    {
+      "id": "serverless.workflow",
+      "description": "List Workflows",
+      "argv": [
+        "serverless",
+        "workflow",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "serverless.workflow.execution",
+      "description": "List Execution",
+      "argv": [
+        "serverless",
+        "workflow",
+        "execution",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "operational",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--workflow-id",
+        "--workflow-name",
+        "--limit"
+      ],
+      "parent_flag": "--workflow-id",
+      "parent_command": "serverless.workflow"
+    },
+    {
+      "id": "smartcaptcha.captcha",
+      "description": "Retrieves the list of Captcha resources in the specified folder.",
+      "argv": [
+        "smartcaptcha",
+        "captcha",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--folder-id"
+      ]
+    },
+    {
+      "id": "smartcaptcha.v1.captcha",
+      "description": "Retrieves the list of Captcha resources in the specified folder.",
+      "argv": [
+        "smartcaptcha",
+        "v1",
+        "captcha",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--folder-id"
+      ],
+      "alias_of": "smartcaptcha.captcha"
+    },
+    {
+      "id": "smartwebsecurity.advanced-rate-limiter.advanced-rate-limiter-profile",
+      "description": "Retrieves the list of AdvancedRateLimiterProfile resources in the specified folder.",
+      "argv": [
+        "smartwebsecurity",
+        "advanced-rate-limiter",
+        "advanced-rate-limiter-profile",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--folder-id"
+      ]
+    },
+    {
+      "id": "smartwebsecurity.custom-page.custom-page",
+      "description": "Retrieves the list of CustomPage resources in the specified folder.",
+      "argv": [
+        "smartwebsecurity",
+        "custom-page",
+        "custom-page",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--folder-id",
+        "--page-size",
+        "--page-token",
+        "--filter",
+        "--order-by"
+      ]
+    },
+    {
+      "id": "smartwebsecurity.load-balancer.domain",
+      "description": "Lists domains of the specified load balancer.",
+      "argv": [
+        "smartwebsecurity",
+        "load-balancer",
+        "domain",
+        "list"
+      ],
+      "scope": "parent",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--load-balancer-id"
+      ],
+      "parent_flag": "--load-balancer-id",
+      "parent_command": "smartwebsecurity.load-balancer.load-balancer"
+    },
+    {
+      "id": "smartwebsecurity.load-balancer.load-balancer",
+      "description": "Lists load balancers in the specified folder.",
+      "argv": [
+        "smartwebsecurity",
+        "load-balancer",
+        "load-balancer",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--folder-id"
+      ]
+    },
+    {
+      "id": "smartwebsecurity.match-list.match-list",
+      "description": "Retrieves the list of MatchList resources in the specified folder.",
+      "argv": [
+        "smartwebsecurity",
+        "match-list",
+        "match-list",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--folder-id"
+      ]
+    },
+    {
+      "id": "smartwebsecurity.security-profile",
+      "description": "Retrieves the list of SecurityProfile resources in the specified folder.",
+      "argv": [
+        "smartwebsecurity",
+        "security-profile",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--folder-id"
+      ]
+    },
+    {
+      "id": "smartwebsecurity.waf.waf-profile",
+      "description": "Retrieves the list of WafProfile resources in the specified folder.",
+      "argv": [
+        "smartwebsecurity",
+        "waf",
+        "waf-profile",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--folder-id"
+      ]
+    },
+    {
+      "id": "storage.bucket",
+      "description": "Lists buckets of specified folder id",
+      "argv": [
+        "storage",
+        "bucket",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "vpc.address",
+      "description": "List addresses in a folder.",
+      "argv": [
+        "vpc",
+        "address",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "vpc.gateway",
+      "description": "List gateways in a folder.",
+      "argv": [
+        "vpc",
+        "gateway",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "vpc.network",
+      "description": "List networks in a folder.",
+      "argv": [
+        "vpc",
+        "network",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "vpc.private-endpoint",
+      "description": "List private endpoints in a folder.",
+      "argv": [
+        "vpc",
+        "private-endpoint",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "vpc.route-table",
+      "description": "List route tables in a folder.",
+      "argv": [
+        "vpc",
+        "route-table",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "vpc.security-group",
+      "description": "List security groups in a folder.",
+      "argv": [
+        "vpc",
+        "security-group",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "vpc.subnet",
+      "description": "List subnets in a folder.",
+      "argv": [
+        "vpc",
+        "subnet",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "ydb.backup",
+      "description": "List YDB backups in a folder.",
+      "argv": [
+        "ydb",
+        "backup",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "ydb.database",
+      "description": "List YDB databases in a folder.",
+      "argv": [
+        "ydb",
+        "database",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "resource",
+      "sensitivity": "none",
+      "default": true,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "ydb.resource-preset",
+      "description": "List YDB resource presets.",
+      "argv": [
+        "ydb",
+        "resource-preset",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "reference",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit"
+      ]
+    },
+    {
+      "id": "ydb.storage-type",
+      "description": "List YDB storage types.",
+      "argv": [
+        "ydb",
+        "storage-type",
+        "list"
+      ],
+      "scope": "folder",
+      "kind": "reference",
+      "sensitivity": "none",
+      "default": false,
+      "flags": [
+        "--limit"
+      ]
+    }
+  ]
+}

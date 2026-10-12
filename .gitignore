@@ -1,0 +1,12 @@
+__pycache__/
+.pytest_cache/
+.venv/
+*.egg-info/
+dist/
+build/
+out/
+.env
+*.pem
+key.json
+sa-key.json
+authorized-key.json
