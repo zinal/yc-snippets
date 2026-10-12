@@ -1,0 +1,9 @@
+---
+description: Базовые правила скриптов Yandex Cloud в yc-snippets
+alwaysApply: true
+---
+
+- Команды Yandex Cloud бери из `src/yc_snippets/data/inventory.json`. Не выдумывай подкоманды `yc` и флаги. Как устроен каталог, написано в `docs/inventory.md`.
+- По умолчанию скрипты только читают метаданные. Создание, изменение и удаление — отдельные файлы в `scripts/automation/` с `--dry-run`.
+- Не передавай `--token` и путь к ключу сервисного аккаунта в argv. Не запускай `yc config list` и `yc lockbox payload get` ради инвентаризации.
+- Для сценария сбора используй скилл `yc-inventory`, для изменяющих операций — `yc-automation`, для официальных источников и обновления каталога — `yc-public-sources`.
