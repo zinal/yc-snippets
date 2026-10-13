@@ -21,7 +21,7 @@ from pathlib import Path
 from yc_snippets.plan import PlanError, assert_safe_argv
 from yc_snippets.redact import redact
 
-PATH_RE = re.compile(r"^/(?P<region>[A-Za-z0-9-]+)/(?P<cloud_id>[A-Za-z0-9]+)/(?P<database_id>[A-Za-z0-9]+)/?$")
+PATH_RE = re.compile(r"^/(?P<region>[^/]+)/(?P<cloud_id>[^/]+)/(?P<database_id>[^/]+)/?$")
 PROFILE_RE = re.compile(r"^[A-Za-z][A-Za-z0-9_.-]{0,63}$")
 FEDERATION_PROPERTY = "federation-id"
 
