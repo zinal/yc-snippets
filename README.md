@@ -33,6 +33,14 @@ python scripts/export-ydb.py databases.txt --federation-id <federation-id> --out
 
 Команда открывает браузер через `yc init --federation-id`. Для каждой базы пишется JSON с описанием, правами, резервными копиями каталога и связанными облаком, каталогом, сетью и пресетом. Содержимое таблиц не читается. Повторный запуск, пока токен федерации жив: `--skip-init`.
 
+Инстанс-группа с именем `instance-group-<database-id>` из уже записанной выгрузки:
+
+```bash
+python scripts/export-instance-groups.py --folder-id <folder-id> --out ./out/ydb
+```
+
+`--folder-id` — каталог, в котором лежат группы. Для каждой базы рядом с её JSON появляется файл `<cloud-id>__<database-id>.instance-group.json`: статус группы, полное описание (`instance-group get --full`), текущий список машин и их размещение по зонам. `--dry-run` только печатает команды. Профиль по умолчанию тот же, `ydb-export`.
+
 ## Обновить каталог после новой версии yc
 
 ```bash
