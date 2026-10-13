@@ -39,3 +39,5 @@ python scripts/yc-snippets inventory --out ./out --folder-id <folder-id>
 Не дописывай argv вручную в обход `build_argv`. Лимит страницы CLI — `--limit`; сам раннер подставляет его только тем командам, у которых флаг есть в каталоге.
 
 Выгрузка конкретных баз YDB по файлу путей `/<region>/<cloud-id>/<database-id>` — это `scripts/export-ydb.py`. Вход в федерацию там идёт через `yc init --federation-id` и браузер. Не заменяй этот скрипт разовыми командами `yc`, если задача совпадает.
+
+Группы `instance-group-<database-id>` по уже записанной выгрузке читает `scripts/export-instance-groups.py`. Список групп — `compute.instance-group` из каталога. `get --full` и `list-instances` в каталоге `list` нет: их флаги сверены со справочником CLI.
