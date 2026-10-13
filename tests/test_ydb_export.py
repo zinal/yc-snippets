@@ -27,12 +27,14 @@ def test_parse_keeps_region_cloud_and_database_and_skips_duplicates():
                 "",
                 "/ru-central1/b1gcloud000000000000/etndb000000000000001",
                 "not-a-path",
+                "/ru-central1/yc.searchapi.service-cloud/etn89km63k1li33bga5p",
                 "/ru-central1/b1gother000000000000/etndb000000000000002/",
             ]
         )
     )
     assert [(item.cloud_id, item.database_id) for item in refs] == [
         ("b1gcloud000000000000", "etndb000000000000001"),
+        ("yc.searchapi.service-cloud", "etn89km63k1li33bga5p"),
         ("b1gother000000000000", "etndb000000000000002"),
     ]
     assert refs[0].region == "ru-central1"
