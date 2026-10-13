@@ -13,6 +13,7 @@ from yc_snippets.ydb_export import (
     export_databases,
     init_argv,
     login_with_federation,
+    main,
     parse_id_lines,
 )
 
@@ -48,8 +49,8 @@ def test_profile_commands_are_allowed_and_token_commands_are_not():
 
 
 def test_init_argv_opens_browser_for_the_given_federation():
-    argv = init_argv("yc", "ydb-export", "ajeexamplefederation")
-    assert argv == ["yc", "--profile", "ydb-export", "init", "--federation-id=ajeexamplefederation"]
+    argv = init_argv("yc", "ydb-export", "yc.yandex-team.federation")
+    assert argv == ["yc", "--profile", "ydb-export", "init", "--federation-id=yc.yandex-team.federation"]
     assert "--no-browser" not in argv
     assert "--token" not in argv
 
@@ -172,6 +173,40 @@ def test_login_refuses_noninteractive_terminal_and_restores_profile():
         )
     assert ["yc", "config", "profile", "activate", "default"] in calls
     assert not any("--no-browser" in call or "--token" in call for call in calls)
+
+
+def test_dotted_federation_id_passes_cli_checks(tmp_path, capsys):
+    ids = tmp_path / "databases.txt"
+    ids.write_text("/ru-central1/b1gcloud000000000000/etndb000000000000001\n", encoding="utf-8")
+    code = main([str(ids), "--federation-id", "yc.yandex-team.federation", "--dry-run"])
+    captured = capsys.readouterr()
+    assert code == 0
+    assert "недопустимые символы" not in captured.err
+
+
+def test_skip_init_accepts_dotted_federation_id():
+    calls = []
+
+    def run(argv, _timeout):
+        calls.append(list(argv))
+        if argv[1:4] == ["config", "profile", "list"]:
+            return YcCall(0, "ydb-export ACTIVE\n", "")
+        if argv[-1] == "federation-id":
+            return YcCall(0, "yc.yandex-team.federation\n", "")
+        if "whoami" in argv:
+            return YcCall(0, json.dumps({"id": "ajeuser"}), "")
+        return YcCall(1, "", "unexpected")
+
+    login_with_federation(
+        yc="yc",
+        profile="ydb-export",
+        federation_id="yc.yandex-team.federation",
+        skip_init=True,
+        run=run,
+        inherit=lambda argv: calls.append(list(argv)) or 0,
+        stdin_is_tty=False,
+    )
+    assert any(call[-1] == "federation-id" for call in calls)
 
 
 def test_skip_init_checks_federation_without_opening_browser():
