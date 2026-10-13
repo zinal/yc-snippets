@@ -22,7 +22,6 @@ from yc_snippets.plan import PlanError, assert_safe_argv
 from yc_snippets.redact import redact
 
 PATH_RE = re.compile(r"^/(?P<region>[A-Za-z0-9-]+)/(?P<cloud_id>[A-Za-z0-9]+)/(?P<database_id>[A-Za-z0-9]+)/?$")
-FEDERATION_RE = re.compile(r"^[A-Za-z][A-Za-z0-9]{5,63}$")
 PROFILE_RE = re.compile(r"^[A-Za-z][A-Za-z0-9_.-]{0,63}$")
 FEDERATION_PROPERTY = "federation-id"
 
@@ -474,7 +473,6 @@ def login_with_federation(
     """
 
     validate_name(profile, PROFILE_RE, "Имя профиля")
-    validate_name(federation_id, FEDERATION_RE, "Идентификатор федерации")
     listing = run([yc, "config", "profile", "list"], 30)
     if listing.returncode != 0:
         detail = redact(listing.stderr).strip() or f"код {listing.returncode}"
@@ -566,7 +564,6 @@ def main(argv: list[str] | None = None) -> int:
         return 2
     try:
         validate_name(args.profile, PROFILE_RE, "Имя профиля")
-        validate_name(args.federation_id, FEDERATION_RE, "Идентификатор федерации")
     except AuthError as exc:
         print(str(exc), file=sys.stderr)
         return 2
