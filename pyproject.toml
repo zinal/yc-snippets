@@ -4,6 +4,7 @@ version = "0.1.0"
 description = "Скрипты инвентаризации и автоматизации ресурсов Yandex Cloud"
 readme = "README.md"
 requires-python = ">=3.11"
+dependencies = ["PyYAML>=6"]
 
 [project.scripts]
 yc-snippets = "yc_snippets.cli:main"
