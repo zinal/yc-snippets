@@ -259,3 +259,103 @@ sudo snap set system proxy.https="http://192.168.0.10:3128"
 ```
 
 Команду пропускают, если `snapd` не установлен.
+
+### Группа серверов через ansible-console
+
+Те же файлы на группу клиентов Ubuntu раскладывает `ansible-console`.
+В `proxy_clients` перечислите клиентские машины. Машина со Squid остаётся вне
+группы: её `apt` ходит в архив напрямую.
+
+Инвентарь, например `inventory`:
+
+```
+[proxy_clients]
+192.168.0.11
+192.168.0.12
+```
+
+Запуск с управляющей машины. `192.168.0.10` — адрес прокси. Если `sudo` на
+клиентах спрашивает пароль, добавьте `-K`.
+
+```bash
+ansible-console proxy_clients -i inventory --become -e 'proxy=http://192.168.0.10:3128'
+```
+
+Консоль выполняет одну команду на все хосты группы. Первое слово строки — имя
+модуля. Повторный запуск с другим `-e proxy=` перезаписывает уже стоящие
+значения. Сначала имеет смысл посмотреть изменения без записи: `check true`.
+Дальше `check false` и те же строки уже применяют настройки. `forks 20`
+поднимает число параллельных хостов, по умолчанию их пять.
+
+```
+list
+file path=/etc/systemd/system.conf.d state=directory mode=0755
+copy dest=/etc/apt/apt.conf.d/95proxy mode=0644 content='Acquire::http::Proxy "{{ proxy }}"; Acquire::https::Proxy "{{ proxy }}";'
+lineinfile path=/etc/environment regexp='^http_proxy=' line='http_proxy="{{ proxy }}"'
+lineinfile path=/etc/environment regexp='^https_proxy=' line='https_proxy="{{ proxy }}"'
+lineinfile path=/etc/environment regexp='^HTTP_PROXY=' line='HTTP_PROXY="{{ proxy }}"'
+lineinfile path=/etc/environment regexp='^HTTPS_PROXY=' line='HTTPS_PROXY="{{ proxy }}"'
+lineinfile path=/etc/environment regexp='^no_proxy=' line='no_proxy="localhost,127.0.0.1,::1,192.168.0.0/16"'
+lineinfile path=/etc/environment regexp='^NO_PROXY=' line='NO_PROXY="localhost,127.0.0.1,::1,192.168.0.0/16"'
+lineinfile path=/etc/systemd/system.conf.d/60-proxy.conf regexp='^\[Manager\]$' line='[Manager]' create=true mode=0644
+lineinfile path=/etc/systemd/system.conf.d/60-proxy.conf regexp='^DefaultEnvironment=' line='DefaultEnvironment="http_proxy={{ proxy }}" "https_proxy={{ proxy }}" "HTTP_PROXY={{ proxy }}" "HTTPS_PROXY={{ proxy }}" "no_proxy=localhost,127.0.0.1,::1,192.168.0.0/16" "NO_PROXY=localhost,127.0.0.1,::1,192.168.0.0/16"' create=true mode=0644
+systemd daemon_reexec=true
+command cmd='apt-config dump Acquire::http::Proxy Acquire::https::Proxy'
+apt update_cache=true
+```
+
+`lineinfile` дописывает ключи в `/etc/environment` и не трогает строку `PATH`.
+`systemd daemon_reexec=true` перечитывает `system.conf` на каждом хосте группы.
+Уже запущенные службы получают новые переменные после своего перезапуска.
+`apt update_cache=true` качает индексы через прокси: в `access.log` Squid
+видны IP клиентов.
+
+Если на клиентах есть `snapd`, отдельно:
+
+```
+command cmd='snap set system proxy.http={{ proxy }}'
+command cmd='snap set system proxy.https={{ proxy }}'
+```
+
+### Пользователь demo
+
+В том же сеансе `ansible-console` эти строки создают на каждом хосте группы
+учётную запись `demo`. Приглашение должно заканчиваться на `#`: тогда задачи
+идут через `sudo`. Приглашение с `$` значит, что `become` выключен и запись в
+`/etc` выполняется от имени пользователя входа. Включить:
+
+```
+become true
+```
+
+Пароль учётки закрыт: вход по паролю не проходит, вход по ключу остаётся.
+`sudo` для `demo` не спрашивает пароль. Группа `sudo` на Ubuntu этого не даёт:
+в ней правило с паролем. Отдельный файл `/etc/sudoers.d/demo` проверяется
+через `visudo` до замены.
+
+Ключ читается на машине, где запущена консоль, из `~/.ssh/id_ecdsa.pub`, и
+дописывается в `/home/demo/.ssh/authorized_keys`. Другие строки этого файла
+остаются. Если публичного ключа нет, задача останавливается и файл ключей не
+меняет.
+
+Модуль `authorized_key` в ansible-core не входит, он из коллекции
+`ansible.posix`. Когда консоль такой модуль не находит, она отправляет всю
+строку в удалённый `shell`, и на хосте появляется `authorized_key: not found`
+с кодом 127. Каталог ключей и сам ключ поэтому пишут модули `file` и
+`lineinfile` из базового набора:
+
+```
+user name=demo state=present shell=/bin/bash create_home=true password_lock=true
+blockinfile path=/etc/sudoers.d/demo create=true owner=root group=root mode=0440 block='demo ALL=(ALL:ALL) NOPASSWD:ALL' validate='visudo -cf %s'
+file path=/home/demo/.ssh state=directory owner=demo group=demo mode=0700
+lineinfile path=/home/demo/.ssh/authorized_keys line="{{ lookup('file', '~/.ssh/id_ecdsa.pub') }}" create=true owner=demo group=demo mode=0600
+```
+
+Проверка с управляющей машины, после выхода из консоли:
+
+```bash
+ssh -i ~/.ssh/id_ecdsa demo@192.168.0.11 sudo -n true
+```
+
+`sudo -n true` завершается с кодом 0: пароль не запрашивался. Адрес замените
+на хост из группы.
