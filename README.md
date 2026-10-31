@@ -48,6 +48,11 @@ python scripts/refresh_catalog.py
 python -m pytest
 ```
 
+## Прокси Squid на Ubuntu 26.04
+
+Установка прямого прокси без логина для сети `192.168.0.0/16` и пример
+`/etc/squid/conf.d/` — в [`docs/squid-ubuntu-26.04.md`](docs/squid-ubuntu-26.04.md).
+
 ## Агентам
 
 Правила работы лежат в [`AGENTS.md`](AGENTS.md), в [`.cursor/rules/yc-snippets.mdc`](.cursor/rules/yc-snippets.mdc) и в скиллах [`.cursor/skills/`](.cursor/skills):
