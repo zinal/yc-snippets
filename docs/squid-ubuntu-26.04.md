@@ -259,3 +259,60 @@ sudo snap set system proxy.https="http://192.168.0.10:3128"
 ```
 
 Команду пропускают, если `snapd` не установлен.
+
+### Группа серверов через ansible-console
+
+Те же файлы на группу клиентов Ubuntu раскладывает `ansible-console`.
+В `proxy_clients` перечислите клиентские машины. Машина со Squid остаётся вне
+группы: её `apt` ходит в архив напрямую.
+
+Инвентарь, например `inventory`:
+
+```
+[proxy_clients]
+192.168.0.11
+192.168.0.12
+```
+
+Запуск с управляющей машины. `192.168.0.10` — адрес прокси. Если `sudo` на
+клиентах спрашивает пароль, добавьте `-K`.
+
+```bash
+ansible-console proxy_clients -i inventory --become -e 'proxy=http://192.168.0.10:3128'
+```
+
+Консоль выполняет одну команду на все хосты группы. Первое слово строки — имя
+модуля. Повторный запуск с другим `-e proxy=` перезаписывает уже стоящие
+значения. Сначала имеет смысл посмотреть изменения без записи: `check true`.
+Дальше `check false` и те же строки уже применяют настройки. `forks 20`
+поднимает число параллельных хостов, по умолчанию их пять.
+
+```
+list
+file path=/etc/systemd/system.conf.d state=directory mode=0755
+copy dest=/etc/apt/apt.conf.d/95proxy mode=0644 content='Acquire::http::Proxy "{{ proxy }}"; Acquire::https::Proxy "{{ proxy }}";'
+lineinfile path=/etc/environment regexp='^http_proxy=' line='http_proxy="{{ proxy }}"'
+lineinfile path=/etc/environment regexp='^https_proxy=' line='https_proxy="{{ proxy }}"'
+lineinfile path=/etc/environment regexp='^HTTP_PROXY=' line='HTTP_PROXY="{{ proxy }}"'
+lineinfile path=/etc/environment regexp='^HTTPS_PROXY=' line='HTTPS_PROXY="{{ proxy }}"'
+lineinfile path=/etc/environment regexp='^no_proxy=' line='no_proxy="localhost,127.0.0.1,::1,192.168.0.0/16"'
+lineinfile path=/etc/environment regexp='^NO_PROXY=' line='NO_PROXY="localhost,127.0.0.1,::1,192.168.0.0/16"'
+lineinfile path=/etc/systemd/system.conf.d/60-proxy.conf regexp='^\[Manager\]$' line='[Manager]' create=true mode=0644
+lineinfile path=/etc/systemd/system.conf.d/60-proxy.conf regexp='^DefaultEnvironment=' line='DefaultEnvironment="http_proxy={{ proxy }}" "https_proxy={{ proxy }}" "HTTP_PROXY={{ proxy }}" "HTTPS_PROXY={{ proxy }}" "no_proxy=localhost,127.0.0.1,::1,192.168.0.0/16" "NO_PROXY=localhost,127.0.0.1,::1,192.168.0.0/16"' create=true mode=0644
+systemd daemon_reexec=true
+command cmd='apt-config dump Acquire::http::Proxy Acquire::https::Proxy'
+apt update_cache=true
+```
+
+`lineinfile` дописывает ключи в `/etc/environment` и не трогает строку `PATH`.
+`systemd daemon_reexec=true` перечитывает `system.conf` на каждом хосте группы.
+Уже запущенные службы получают новые переменные после своего перезапуска.
+`apt update_cache=true` качает индексы через прокси: в `access.log` Squid
+видны IP клиентов.
+
+Если на клиентах есть `snapd`, отдельно:
+
+```
+command cmd='snap set system proxy.http={{ proxy }}'
+command cmd='snap set system proxy.https={{ proxy }}'
+```
