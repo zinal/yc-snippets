@@ -52,7 +52,7 @@ python -m pytest
 
 Установка прямого прокси без логина для сети `192.168.0.0/16`, пример
 `/etc/squid/conf.d/`, настройка клиента для `apt-get` и команды
-`ansible-console` для группы серверов — в
+`ansible-console` для группы серверов, включая пользователя `demo`, — в
 [`docs/squid-ubuntu-26.04.md`](docs/squid-ubuntu-26.04.md).
 
 ## Агентам

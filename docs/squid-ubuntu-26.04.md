@@ -316,3 +316,31 @@ apt update_cache=true
 command cmd='snap set system proxy.http={{ proxy }}'
 command cmd='snap set system proxy.https={{ proxy }}'
 ```
+
+### Пользователь demo
+
+В том же сеансе `ansible-console`, уже с `--become`, эти строки создают на каждом
+хосте группы учётную запись `demo`. Пароль учётки закрыт: вход по паролю не
+проходит, вход по ключу остаётся. `sudo` для `demo` не спрашивает пароль.
+Группа `sudo` на Ubuntu этого не даёт: в ней правило с паролем. Отдельный
+файл `/etc/sudoers.d/demo` проверяется через `visudo` до замены.
+
+Ключ читается на машине, где запущена консоль, из `~/.ssh/id_ecdsa.pub`, и
+дописывается в `~demo/.ssh/authorized_keys`. Другие ключи этого пользователя
+модуль не удаляет. Если файла с публичным ключом нет, задача останавливается
+и `authorized_keys` не меняет.
+
+```
+user name=demo state=present shell=/bin/bash create_home=true password_lock=true
+blockinfile path=/etc/sudoers.d/demo create=true owner=root group=root mode=0440 block='demo ALL=(ALL:ALL) NOPASSWD:ALL' validate='visudo -cf %s'
+authorized_key user=demo state=present key="{{ lookup('file', '~/.ssh/id_ecdsa.pub') }}"
+```
+
+Проверка с управляющей машины, после выхода из консоли:
+
+```bash
+ssh -i ~/.ssh/id_ecdsa demo@192.168.0.11 sudo -n true
+```
+
+`sudo -n true` завершается с кодом 0: пароль не запрашивался. Адрес замените
+на хост из группы.
