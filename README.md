@@ -50,8 +50,9 @@ python -m pytest
 
 ## Прокси Squid на Ubuntu 26.04
 
-Установка прямого прокси без логина для сети `192.168.0.0/16` и пример
-`/etc/squid/conf.d/` — в [`docs/squid-ubuntu-26.04.md`](docs/squid-ubuntu-26.04.md).
+Установка прямого прокси без логина для сети `192.168.0.0/16`, пример
+`/etc/squid/conf.d/` и настройка клиента, чтобы `apt-get` ходил через прокси, —
+в [`docs/squid-ubuntu-26.04.md`](docs/squid-ubuntu-26.04.md).
 
 ## Агентам
 

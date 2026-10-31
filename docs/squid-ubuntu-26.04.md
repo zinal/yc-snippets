@@ -108,18 +108,10 @@ sudo ufw status
 
 ## Клиент
 
-Переменные для программ, которые умеют HTTP-прокси:
+Ниже адрес прокси — `192.168.0.10`. Подставьте адрес машины со Squid в сети
+`192.168.*`. Порт — `3128`, логин пустой.
 
-```bash
-export http_proxy=http://192.168.0.10:3128
-export https_proxy=http://192.168.0.10:3128
-export no_proxy=localhost,127.0.0.1
-```
-
-`192.168.0.10` замените на адрес прокси в сети `192.168.*`. В браузере тот же
-адрес и порт `3128`, поле логина пустое.
-
-Проверка с машины внутри `192.168.0.0/16`:
+Разовая проверка с клиента из `192.168.0.0/16`:
 
 ```bash
 curl -x http://192.168.0.10:3128 -I http://example.com
@@ -137,8 +129,133 @@ curl -x http://192.168.0.10:3128 -I https://example.com
 `http_access allow localhost` из поставки и не проверяет ACL `lan_192_168`.
 Сеть `192.168.0.0/16` проверяйте с клиента из этой сети.
 
-Журнал запросов:
+Журнал запросов на прокси:
 
 ```bash
 sudo tail -f /var/log/squid/access.log
 ```
+
+Имена сайтов разбирает сервер Squid. Клиенту нужен только его адрес, поэтому
+в примерах указан IP, а не имя. На сервере Squid должен отвечать резолвер.
+Клиенту внешний DNS для `apt` и для программ, которые ходят через этот прокси,
+не требуется.
+
+В браузере тот же адрес и порт `3128`, поле логина пустое.
+
+### Машина без прямого интернета
+
+Эти файлы ставят на клиенте Ubuntu 26.04, у которого наружу нет своего
+маршрута. На сервере Squid их не включают: `apt` этого сервера ходит в архив
+напрямую.
+
+Одного файла на все программы нет. `apt` читает свой конфиг. Сеансы входа
+читают `/etc/environment`. Службы systemd получают переменные только из
+настроек менеджера.
+
+#### apt
+
+`apt` 3.2 в Ubuntu 26.04 берёт прокси из `/etc/apt/apt.conf.d/`. Этот файл
+действует для `sudo apt-get`, для cron и для службы `unattended-upgrades`.
+Пример — [`examples/client/apt.conf.d/95proxy`](../examples/client/apt.conf.d/95proxy):
+
+```
+Acquire::http::Proxy "http://192.168.0.10:3128";
+Acquire::https::Proxy "http://192.168.0.10:3128";
+```
+
+В строке `https` схема тоже `http://`: apt открывает туннель `CONNECT`,
+а с прокси по TLS не соединяется. Для локального зеркала, до которого клиент
+ходит сам, добавьте исключение, например
+`Acquire::http::Proxy::mirror.internal "DIRECT";`.
+
+Команда из корня репозитория:
+
+```bash
+sudo install -m 644 examples/client/apt.conf.d/95proxy /etc/apt/apt.conf.d/95proxy
+apt-config dump Acquire::http::Proxy Acquire::https::Proxy
+sudo apt-get update
+```
+
+`apt-config` печатает оба значения с адресом прокси. `apt-get update` качает
+индексы через Squid: в `access.log` появляются строки с IP клиента и именем
+архива. В поставке Ubuntu 26.04 это `http://archive.ubuntu.com/ubuntu/` и
+`http://security.ubuntu.com/ubuntu/`, на архитектурах кроме amd64 —
+`http://ports.ubuntu.com/ubuntu-ports/`. Подпись индексов apt проверяет сам.
+Репозиторий на HTTPS виден в журнале как `TCP_TUNNEL` на порт 443; сертификат
+сайта проверяет клиент, для этого на нём нужны верные часы и пакет
+`ca-certificates`.
+
+#### Сеансы и sudo
+
+Строки из [`examples/client/environment.proxy`](../examples/client/environment.proxy)
+дописывают в конец `/etc/environment`. Это не скрипт: слова `export` там нет,
+строку `PATH` не затирают.
+
+```
+http_proxy="http://192.168.0.10:3128"
+https_proxy="http://192.168.0.10:3128"
+HTTP_PROXY="http://192.168.0.10:3128"
+HTTPS_PROXY="http://192.168.0.10:3128"
+no_proxy="localhost,127.0.0.1,::1,192.168.0.0/16"
+NO_PROXY="localhost,127.0.0.1,::1,192.168.0.0/16"
+```
+
+Оба регистра нужны: curl и wget читают `http_proxy` строчными буквами, часть
+программ на Go и Java читает `HTTP_PROXY`. Запись `192.168.0.0/16` в
+`no_proxy` понимает curl. wget сверяет суффикс имени, поэтому локальные имена
+дописывают в тот же список отдельно.
+
+Файл подхватывает новый вход по SSH и вход на консоли. Уже открытый сеанс
+старые переменные не обновляет. `sudo` на Ubuntu читает `/etc/environment`
+через `pam_env.so` в `/etc/pam.d/sudo`, поэтому `sudo curl` видит прокси сразу
+после правки файла.
+
+Проверка в новой сессии, уже без ключа `-x`:
+
+```bash
+curl -I http://example.com
+curl -I https://example.com
+```
+
+#### Службы systemd
+
+Служба не читает `/etc/environment`. Чтобы исходящие запросы служб тоже шли
+через прокси, поставьте drop-in менеджера
+[`examples/client/systemd/system.conf.d/60-proxy.conf`](../examples/client/systemd/system.conf.d/60-proxy.conf):
+
+```
+[Manager]
+DefaultEnvironment="http_proxy=http://192.168.0.10:3128" "https_proxy=http://192.168.0.10:3128" "HTTP_PROXY=http://192.168.0.10:3128" "HTTPS_PROXY=http://192.168.0.10:3128" "no_proxy=localhost,127.0.0.1,::1,192.168.0.0/16" "NO_PROXY=localhost,127.0.0.1,::1,192.168.0.0/16"
+```
+
+```bash
+sudo mkdir -p /etc/systemd/system.conf.d
+sudo install -m 644 examples/client/systemd/system.conf.d/60-proxy.conf /etc/systemd/system.conf.d/60-proxy.conf
+sudo systemctl daemon-reexec
+```
+
+`daemon-reexec` перечитывает `system.conf`. `daemon-reload` обновляет только
+юниты. Переменную получают процессы, запущенные после этого. Уже работающую
+службу перезапускают отдельно, например `sudo systemctl restart имя.service`.
+Список общий для всех системных служб: локальные адреса остаются в `no_proxy`,
+иначе служба пошлёт запрос к соседу в `192.168.*` на прокси.
+
+Для одной службы достаточно своего drop-in, без общего `DefaultEnvironment`:
+
+```bash
+sudo systemctl edit имя.service
+```
+
+```
+[Service]
+Environment="http_proxy=http://192.168.0.10:3128" "https_proxy=http://192.168.0.10:3128" "no_proxy=localhost,127.0.0.1,::1,192.168.0.0/16"
+```
+
+Пакеты snap читают отдельные настройки snapd:
+
+```bash
+sudo snap set system proxy.http="http://192.168.0.10:3128"
+sudo snap set system proxy.https="http://192.168.0.10:3128"
+```
+
+Команду пропускают, если `snapd` не установлен.
