@@ -319,21 +319,36 @@ command cmd='snap set system proxy.https={{ proxy }}'
 
 ### Пользователь demo
 
-В том же сеансе `ansible-console`, уже с `--become`, эти строки создают на каждом
-хосте группы учётную запись `demo`. Пароль учётки закрыт: вход по паролю не
-проходит, вход по ключу остаётся. `sudo` для `demo` не спрашивает пароль.
-Группа `sudo` на Ubuntu этого не даёт: в ней правило с паролем. Отдельный
-файл `/etc/sudoers.d/demo` проверяется через `visudo` до замены.
+В том же сеансе `ansible-console` эти строки создают на каждом хосте группы
+учётную запись `demo`. Приглашение должно заканчиваться на `#`: тогда задачи
+идут через `sudo`. Приглашение с `$` значит, что `become` выключен и запись в
+`/etc` выполняется от имени пользователя входа. Включить:
+
+```
+become true
+```
+
+Пароль учётки закрыт: вход по паролю не проходит, вход по ключу остаётся.
+`sudo` для `demo` не спрашивает пароль. Группа `sudo` на Ubuntu этого не даёт:
+в ней правило с паролем. Отдельный файл `/etc/sudoers.d/demo` проверяется
+через `visudo` до замены.
 
 Ключ читается на машине, где запущена консоль, из `~/.ssh/id_ecdsa.pub`, и
-дописывается в `~demo/.ssh/authorized_keys`. Другие ключи этого пользователя
-модуль не удаляет. Если файла с публичным ключом нет, задача останавливается
-и `authorized_keys` не меняет.
+дописывается в `/home/demo/.ssh/authorized_keys`. Другие строки этого файла
+остаются. Если публичного ключа нет, задача останавливается и файл ключей не
+меняет.
+
+Модуль `authorized_key` в ansible-core не входит, он из коллекции
+`ansible.posix`. Когда консоль такой модуль не находит, она отправляет всю
+строку в удалённый `shell`, и на хосте появляется `authorized_key: not found`
+с кодом 127. Каталог ключей и сам ключ поэтому пишут модули `file` и
+`lineinfile` из базового набора:
 
 ```
 user name=demo state=present shell=/bin/bash create_home=true password_lock=true
 blockinfile path=/etc/sudoers.d/demo create=true owner=root group=root mode=0440 block='demo ALL=(ALL:ALL) NOPASSWD:ALL' validate='visudo -cf %s'
-authorized_key user=demo state=present key="{{ lookup('file', '~/.ssh/id_ecdsa.pub') }}"
+file path=/home/demo/.ssh state=directory owner=demo group=demo mode=0700
+lineinfile path=/home/demo/.ssh/authorized_keys line="{{ lookup('file', '~/.ssh/id_ecdsa.pub') }}" create=true owner=demo group=demo mode=0600
 ```
 
 Проверка с управляющей машины, после выхода из консоли:
