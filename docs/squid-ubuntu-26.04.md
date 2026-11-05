@@ -359,3 +359,80 @@ ssh -i ~/.ssh/id_ecdsa demo@192.168.0.11 sudo -n true
 
 `sudo -n true` завершается с кодом 0: пароль не запрашивался. Адрес замените
 на хост из группы.
+
+## Перехват HTTP через redsocks
+
+Так программы попадают в Squid, даже если у них не задан `http_proxy`.
+redsocks и правила `iptables` ставят на клиенте из `192.168.0.0/16`. На сервере
+Squid их не включают: его собственные запросы к сайтам ушли бы обратно в прокси.
+
+Пакет в Ubuntu 26.04 — `redsocks` `0.5-2build5` из `universe`. Он слушает
+`127.0.0.1`. Исходящий TCP/80 и TCP/443 `iptables` в таблице `nat` перенаправляет
+на эти порты, а redsocks открывает обычное соединение с Squid `192.168.0.10:3128`.
+Адрес клиента для Squid остаётся адресом из `192.168.0.0/16`, поэтому уже
+настроенный ACL `lan_192_168` его пускает.
+
+Порт 80 обрабатывает тип `http-relay`: Squid видит обычный прокси-запрос.
+Порт 443 обрабатывает тип `http-connect`: это туннель `CONNECT`, его поставка
+Squid разрешает только на 443. Остальные порты правила не трогают.
+
+Клиент сам разбирает имя сайта до соединения. Резолвер на клиенте должен
+отвечать. В схеме с переменной `http_proxy` имена разбирает Squid, здесь это
+уже не так.
+
+```bash
+sudo apt update
+sudo apt install redsocks iptables-persistent
+sudo cp -a /etc/redsocks.conf /etc/redsocks.conf.original
+sudo install -m 644 examples/redsocks/redsocks.conf /etc/redsocks.conf
+sudo redsocks -t -c /etc/redsocks.conf
+sudo systemctl restart redsocks
+sudo systemctl enable redsocks
+```
+
+Команда `install` запускается из корня репозитория. Пример —
+[`examples/redsocks/redsocks.conf`](../examples/redsocks/redsocks.conf).
+`redsocks -t` заканчивается с кодом 0, когда файл разобран. Служба пишет журнал
+в syslog, facility `daemon`.
+
+Правила собирает [`examples/redsocks/nat-redirect.sh`](../examples/redsocks/nat-redirect.sh).
+Пакет `redsocks` к этому моменту уже создал пользователя `redsocks`: по его uid
+собственные соединения демона к порту 3128 не попадают в перенаправление.
+
+```bash
+sudo sh examples/redsocks/nat-redirect.sh
+sudo netfilter-persistent save
+```
+
+Цепочка `REDSOCKS` сначала возвращает без изменений зарезервированные сети,
+включая `192.168.0.0/16`, `10.0.0.0/8` и `169.254.0.0/16`. HTTP к соседям в
+локальной сети и к адресу метаданных идёт напрямую. TCP/80 остальных адресов
+уходит на `127.0.0.1:12345`, TCP/443 — на `127.0.0.1:12346`. В цепочку `OUTPUT`
+попадают только эти два порта. Повторный запуск скрипта очищает `REDSOCKS` и
+собирает её заново, чужие правила `OUTPUT` не стирает.
+
+`netfilter-persistent save` записывает таблицу в `/etc/iptables/rules.v4`, и
+пакет `iptables-persistent` поднимает её при загрузке. Команда `iptables` в
+Ubuntu 26.04 работает через nftables.
+
+Проверка без переменных прокси, иначе `curl` пойдёт в Squid мимо iptables:
+
+```bash
+env -u http_proxy -u https_proxy -u HTTP_PROXY -u HTTPS_PROXY \
+  curl --noproxy '*' -I http://example.com
+sudo iptables -t nat -L REDSOCKS -n -v
+```
+
+У счётчика правила `--dport 80` растёт число пакетов. В `/var/log/squid/access.log`
+на прокси виден IP клиента и `example.com`. Та же проверка для `https://example.com`
+даёт в журнале `TCP_TUNNEL` на порт 443.
+
+Снять перенаправление:
+
+```bash
+sudo iptables -t nat -D OUTPUT -p tcp -m multiport --dports 80,443 -j REDSOCKS
+sudo iptables -t nat -D OUTPUT -p tcp -m owner --uid-owner redsocks -j RETURN
+sudo iptables -t nat -F REDSOCKS
+sudo iptables -t nat -X REDSOCKS
+sudo netfilter-persistent save
+```
